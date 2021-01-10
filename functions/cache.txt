@@ -1,1 +1,0 @@
-speak=C:\Users\1662987\Documents\IntelliJ\Projects\Playground\functions\speak.function
