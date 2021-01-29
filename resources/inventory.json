@@ -1,0 +1,294 @@
+{
+  "name": "Inventory",
+  "items": [
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    },
+    {
+      "material": "STICK",
+      "amount": 5,
+      "meta": {
+        "displayName": "Cool Stick",
+        "rarity": "LEGENDARY"
+      }
+    }
+  ],
+  "size": 36
+}

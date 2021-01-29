@@ -4,10 +4,7 @@ import me.superischroma.playground.util.PlaygroundUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class EventManager
@@ -28,6 +25,18 @@ public final class EventManager
         PlaygroundUtils.addIfNotNull(LISTENERS, PlaygroundUtils.instance(listener));
     }
 
+    public static void registerListeners(Listener... listeners)
+    {
+        LISTENERS.addAll(Arrays.asList(listeners));
+    }
+
+    @SafeVarargs
+    public static void registerListeners(Class<? extends Listener>... listeners)
+    {
+        for (Class<? extends Listener> listener : listeners)
+            PlaygroundUtils.addIfNotNull(LISTENERS, PlaygroundUtils.instance(listener));
+    }
+
     public static void call(Event e)
     {
         for (Listener listener : LISTENERS)
@@ -42,12 +51,9 @@ public final class EventManager
                             return false;
                         return params.contains(e.getClass());
                     })
-                    .sorted((m1, m2) ->
-                    {
-                        EventHandler h1 = m1.getAnnotation(EventHandler.class);
-                        EventHandler h2 = m2.getAnnotation(EventHandler.class);
-                        return h1.priority().ordinal() - h2.priority().ordinal();
-                    }).collect(Collectors.toList());
+                    .sorted(Comparator.comparingInt(m ->
+                            m.getAnnotation(EventHandler.class).priority().ordinal()))
+                            .collect(Collectors.toList());
             Collections.reverse(methods);
             for (Method method : methods)
             {
