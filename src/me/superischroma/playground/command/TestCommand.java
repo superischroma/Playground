@@ -2,6 +2,7 @@ package me.superischroma.playground.command;
 
 import me.superischroma.playground.ssd.SSDCollection;
 import me.superischroma.playground.ssd.SSDIO;
+import me.superischroma.playground.ssd.array.SSDStringArray;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class TestCommand extends AbstractCommand
         collection.setIntArray("CoolInts", new int[]{83828, 39298, 382});
         collection.setByteArray("CoolBytes", new byte[]{});
         collection.setLongArray("CoolLongs", new long[]{94290973473247L, 42372347832782L});
+        collection.setStringArray("CoolStrings", new String[]{"bruh", "lol"});
         Messenger.send(Arrays.toString(collection.asByteArray()));
         SSDIO.write(new File("./resources/test.ssf"), collection);
         Messenger.send(SSDIO.read(new File("./resources/test.ssf")).toString());

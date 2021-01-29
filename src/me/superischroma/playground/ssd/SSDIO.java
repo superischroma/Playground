@@ -131,6 +131,19 @@ public final class SSDIO
                 tracker++;
                 val = ds;
             }
+            if (ssd instanceof SSDStringArray)
+            {
+                short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
+                String[] ss = new String[al];
+                for (int i = 0; i < al; i++)
+                {
+                    short l = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
+                    ss[i] = new String(Arrays.copyOfRange(bytes, ++tracker, tracker += l));
+                    tracker--;
+                }
+                tracker++;
+                val = ss;
+            }
             tracker--;
             SSD so = SSD.create(val);
             if (collections.size() != 0)

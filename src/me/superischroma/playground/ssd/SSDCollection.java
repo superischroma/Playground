@@ -112,6 +112,11 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         map.put(k, new SSDDoubleArray(v));
     }
 
+    public void setStringArray(String k, String[] v)
+    {
+        map.put(k, new SSDStringArray(v));
+    }
+
     public Set<String> keys()
     {
         return map.keySet();
@@ -242,6 +247,14 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         return null;
     }
 
+    public String[] getStringArray(String k)
+    {
+        SSD d = map.get(k);
+        if (d instanceof SSDStringArray)
+            return ((SSDStringArray) d).getValue();
+        return null;
+    }
+
     public void remove(String k)
     {
         map.remove(k);
@@ -369,6 +382,13 @@ public class SSDCollection implements SSD<Map<String, SSD>>
             if (ssd instanceof SSDDoubleArray)
             {
                 double[] ds = ((SSDDoubleArray) ssd).getValue();
+                ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) ds.length);
+                bytes[++tracker] = lbb.get(0);
+                bytes[++tracker] = lbb.get(1);
+            }
+            if (ssd instanceof SSDStringArray)
+            {
+                String[] ds = ((SSDStringArray) ssd).getValue();
                 ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) ds.length);
                 bytes[++tracker] = lbb.get(0);
                 bytes[++tracker] = lbb.get(1);

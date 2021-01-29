@@ -46,6 +46,7 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="me.superischroma.playground.ssd.array" />
+      <recent name="me.superischroma.playground.school" />
       <recent name="me.superischroma.playground.ssd" />
       <recent name="me.superischroma.playground.command" />
     </key>
@@ -104,10 +105,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="290" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1611896091545" />
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1610234033150">
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611957886869">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1610234033150" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1611957886869" />
     <state x="363" y="23" key="#com.intellij.unscramble.UnscrambleDialog" timestamp="1611935360200">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -116,22 +117,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="410" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610163654906" />
-    <state width="1323" height="194" key="GridCell.Tab.0.bottom" timestamp="1611934564327">
+    <state width="1323" height="194" key="GridCell.Tab.0.bottom" timestamp="1611963521912">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611934564327" />
-    <state width="1323" height="194" key="GridCell.Tab.0.center" timestamp="1611934564326">
+    <state width="1323" height="194" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611963521912" />
+    <state width="1323" height="194" key="GridCell.Tab.0.center" timestamp="1611963521911">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1611934564326" />
-    <state width="1323" height="194" key="GridCell.Tab.0.left" timestamp="1611934564326">
+    <state width="1323" height="194" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1611963521911" />
+    <state width="1323" height="194" key="GridCell.Tab.0.left" timestamp="1611963521911">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1611934564326" />
-    <state width="1323" height="194" key="GridCell.Tab.0.right" timestamp="1611934564326">
+    <state width="1323" height="194" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1611963521911" />
+    <state width="1323" height="194" key="GridCell.Tab.0.right" timestamp="1611963521911">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1611934564326" />
+    <state width="1323" height="194" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1611963521911" />
     <state x="259" y="0" key="SettingsEditor" timestamp="1610309185761">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -149,10 +150,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="dock-window-2/0.0.1366.728@0.0.1366.728" timestamp="1610136301288" />
-    <state x="380" y="96" width="736" height="606" key="find.popup" timestamp="1611896519771">
+    <state x="380" y="96" width="736" height="606" key="find.popup" timestamp="1611957112939">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="380" y="96" width="736" height="606" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1611896519771" />
+    <state x="380" y="96" width="736" height="606" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1611957112939" />
     <state x="65" y="0" key="new project wizard" timestamp="1608859714283">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -22,6 +22,7 @@ import java.lang.reflect.Field;
  *  - SSD_Long_Array > a sequence of signed, 64-bit (8 byte) integers
  *  - SSD_Float_Array > a sequence of 32-bit (4 byte) IEEE-754 single-precision numbers
  *  - SSD_Double_Array > a sequence of 64-bit (8 byte) IEEE-754 double-precision numbers
+ *  - SSD_String_Array > a sequence of strings of characters
  * @param <T> Type to be stored as
  */
 public interface SSD<T>
@@ -64,6 +65,8 @@ public interface SSD<T>
             return new SSDFloatArray((float[]) object);
         if (object instanceof double[])
             return new SSDDoubleArray((double[]) object);
+        if (object instanceof String[])
+            return new SSDStringArray((String[]) object);
         return null;
     }
 
@@ -99,6 +102,8 @@ public interface SSD<T>
             return new SSDFloatArray(null);
         if (type == SSDDoubleArray.TYPE)
             return new SSDDoubleArray(null);
+        if (type == SSDStringArray.TYPE)
+            return new SSDStringArray(null);
         return null;
     }
 
