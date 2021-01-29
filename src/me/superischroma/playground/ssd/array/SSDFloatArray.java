@@ -1,16 +1,18 @@
-package me.superischroma.playground.ssd;
+package me.superischroma.playground.ssd.array;
+
+import me.superischroma.playground.ssd.SSD;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-public class SSDIntArray implements SSD<int[]>
+public class SSDFloatArray implements SSD<float[]>
 {
-    public static final String NAME = "SSD_Int_Array";
-    public static final byte TYPE = 10;
+    public static final String NAME = "SSD_Float_Array";
+    public static final byte TYPE = 13;
 
-    private int[] value;
+    private float[] value;
 
-    public SSDIntArray(int[] value)
+    public SSDFloatArray(float[] value)
     {
         this.value = value;
     }
@@ -22,13 +24,13 @@ public class SSDIntArray implements SSD<int[]>
     }
 
     @Override
-    public void setValue(int[] value)
+    public void setValue(float[] value)
     {
         this.value = value;
     }
 
     @Override
-    public int[] getValue()
+    public float[] getValue()
     {
         return value;
     }
@@ -49,8 +51,8 @@ public class SSDIntArray implements SSD<int[]>
     public byte[] asByteArray()
     {
         ByteBuffer bb = ByteBuffer.allocate(length());
-        for (int i : value)
-            bb.putInt(i);
+        for (float f : value)
+            bb.putFloat(f);
         return bb.array();
     }
 

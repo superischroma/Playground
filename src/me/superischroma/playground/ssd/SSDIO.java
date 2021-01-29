@@ -1,5 +1,7 @@
 package me.superischroma.playground.ssd;
 
+import me.superischroma.playground.ssd.array.*;
+
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -69,6 +71,18 @@ public final class SSDIO
                 short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
                 val = Arrays.copyOfRange(bytes, ++tracker, tracker += al);
             }
+            if (ssd instanceof SSDShortArray)
+            {
+                short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
+                short[] ss = new short[al];
+                for (int i = 0; i < al; i++)
+                {
+                    ss[i] = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += 2)).getShort();
+                    tracker--;
+                }
+                tracker++;
+                val = ss;
+            }
             if (ssd instanceof SSDIntArray)
             {
                 short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
@@ -92,6 +106,30 @@ public final class SSDIO
                 }
                 tracker++;
                 val = ls;
+            }
+            if (ssd instanceof SSDFloatArray)
+            {
+                short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
+                float[] fs = new float[al];
+                for (int i = 0; i < al; i++)
+                {
+                    fs[i] = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += 4)).getFloat();
+                    tracker--;
+                }
+                tracker++;
+                val = fs;
+            }
+            if (ssd instanceof SSDDoubleArray)
+            {
+                short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
+                double[] ds = new double[al];
+                for (int i = 0; i < al; i++)
+                {
+                    ds[i] = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += 8)).getDouble();
+                    tracker--;
+                }
+                tracker++;
+                val = ds;
             }
             tracker--;
             SSD so = SSD.create(val);

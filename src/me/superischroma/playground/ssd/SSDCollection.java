@@ -1,7 +1,10 @@
 package me.superischroma.playground.ssd;
 
+import me.superischroma.playground.ssd.array.*;
+
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,6 +30,11 @@ public class SSDCollection implements SSD<Map<String, SSD>>
     public void set(String k, SSD v)
     {
         map.put(k, v);
+    }
+
+    public void setBoolean(String k, boolean v)
+    {
+        map.put(k, new SSDByte((byte) (v ? 1 : 0)));
     }
 
     public void setByte(String k, byte v)
@@ -74,6 +82,11 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         map.put(k, new SSDByteArray(v));
     }
 
+    public void setShortArray(String k, short[] v)
+    {
+        map.put(k, new SSDShortArray(v));
+    }
+
     public void setIntArray(String k, int[] v)
     {
         map.put(k, new SSDIntArray(v));
@@ -84,6 +97,16 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         map.put(k, new SSDLongArray(v));
     }
 
+    public void setFloatArray(String k, float[] v)
+    {
+        map.put(k, new SSDFloatArray(v));
+    }
+
+    public void setDoubleArray(String k, double[] v)
+    {
+        map.put(k, new SSDDoubleArray(v));
+    }
+
     public Set<String> keys()
     {
         return map.keySet();
@@ -92,6 +115,14 @@ public class SSDCollection implements SSD<Map<String, SSD>>
     public SSD get(String k)
     {
         return map.get(k);
+    }
+
+    public boolean getBoolean(String k)
+    {
+        SSD d = map.get(k);
+        if (d instanceof SSDByte)
+            return ((SSDByte) d).getValue() > 0;
+        return false;
     }
 
     public byte getByte(String k)
@@ -166,6 +197,14 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         return null;
     }
 
+    public short[] getShortArray(String k)
+    {
+        SSD d = map.get(k);
+        if (d instanceof SSDShortArray)
+            return ((SSDShortArray) d).getValue();
+        return null;
+    }
+
     public int[] getIntArray(String k)
     {
         SSD d = map.get(k);
@@ -179,6 +218,22 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         SSD d = map.get(k);
         if (d instanceof SSDLongArray)
             return ((SSDLongArray) d).getValue();
+        return null;
+    }
+
+    public float[] getFloatArray(String k)
+    {
+        SSD d = map.get(k);
+        if (d instanceof SSDFloatArray)
+            return ((SSDFloatArray) d).getValue();
+        return null;
+    }
+
+    public double[] getDoubleArray(String k)
+    {
+        SSD d = map.get(k);
+        if (d instanceof SSDDoubleArray)
+            return ((SSDDoubleArray) d).getValue();
         return null;
     }
 
@@ -211,10 +266,7 @@ public class SSDCollection implements SSD<Map<String, SSD>>
             if (ssd.getValue() == null)
                 continue;
             size += entry.getKey().length();
-            if (ssd instanceof SSDString ||
-                    ssd instanceof SSDByteArray ||
-                    ssd instanceof SSDIntArray ||
-                    ssd instanceof SSDLongArray) // string: 2 for value length; array: 2 for array length
+            if (ssd.usesSpecialLength()) // string: 2 for value length; array: 2 for array length
                 size += 2;
             size += ssd.length();
         }
@@ -241,10 +293,7 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         byte[] nbs = name.getBytes();
         int tracker = 2;
         for (byte nb : nbs)
-        {
-            tracker++;
-            bytes[tracker] = nb;
-        }
+            bytes[++tracker] = nb;
         for (Map.Entry<String, SSD> entry : map.entrySet())
         {
             tracker++;
@@ -260,68 +309,69 @@ public class SSDCollection implements SSD<Map<String, SSD>>
             {
                 tracker--;
                 for (byte vb : ssd.asByteArray())
-                {
-                    tracker++;
-                    bytes[tracker] = vb;
-                }
+                    bytes[++tracker] = vb;
                 continue;
             }
             ByteBuffer kbb = ByteBuffer.allocate(2).putShort((short) k.length());
-            tracker++;
-            bytes[tracker] = kbb.get(0);
-            tracker++;
-            bytes[tracker] = kbb.get(1);
+            bytes[++tracker] = kbb.get(0);
+            bytes[++tracker] = kbb.get(1);
             byte[] kbs = k.getBytes();
             for (byte kb : kbs)
-            {
-                tracker++;
-                bytes[tracker] = kb;
-            }
+                bytes[++tracker] = kb;
             if (ssd.getValue() == null) continue;
             if (ssd instanceof SSDString) // the length of the string
             {
                 String v = ((SSDString) ssd).getValue();
                 ByteBuffer vbb = ByteBuffer.allocate(2).putShort((short) v.length());
-                tracker++;
-                bytes[tracker] = vbb.get(0);
-                tracker++;
-                bytes[tracker] = vbb.get(1);
+                bytes[++tracker] = vbb.get(0);
+                bytes[++tracker] = vbb.get(1);
             }
             if (ssd instanceof SSDByteArray)
             {
                 byte[] bs = ((SSDByteArray) ssd).getValue();
                 ByteBuffer bbb = ByteBuffer.allocate(2).putShort((short) bs.length);
-                tracker++;
-                bytes[tracker] = bbb.get(0);
-                tracker++;
-                bytes[tracker] = bbb.get(1);
+                bytes[++tracker] = bbb.get(0);
+                bytes[++tracker] = bbb.get(1);
+            }
+            if (ssd instanceof SSDShortArray)
+            {
+                short[] ss = ((SSDShortArray) ssd).getValue();
+                ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) ss.length);
+                bytes[++tracker] = lbb.get(0);
+                bytes[++tracker] = lbb.get(1);
             }
             if (ssd instanceof SSDIntArray)
             {
                 int[] is = ((SSDIntArray) ssd).getValue();
                 ByteBuffer ibb = ByteBuffer.allocate(2).putShort((short) is.length);
-                tracker++;
-                bytes[tracker] = ibb.get(0);
-                tracker++;
-                bytes[tracker] = ibb.get(1);
+                bytes[++tracker] = ibb.get(0);
+                bytes[++tracker] = ibb.get(1);
             }
             if (ssd instanceof SSDLongArray)
             {
-                long[] is = ((SSDLongArray) ssd).getValue();
-                ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) is.length);
-                tracker++;
-                bytes[tracker] = lbb.get(0);
-                tracker++;
-                bytes[tracker] = lbb.get(1);
+                long[] ls = ((SSDLongArray) ssd).getValue();
+                ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) ls.length);
+                bytes[++tracker] = lbb.get(0);
+                bytes[++tracker] = lbb.get(1);
+            }
+            if (ssd instanceof SSDFloatArray)
+            {
+                float[] fs = ((SSDFloatArray) ssd).getValue();
+                ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) fs.length);
+                bytes[++tracker] = lbb.get(0);
+                bytes[++tracker] = lbb.get(1);
+            }
+            if (ssd instanceof SSDDoubleArray)
+            {
+                double[] ds = ((SSDDoubleArray) ssd).getValue();
+                ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) ds.length);
+                bytes[++tracker] = lbb.get(0);
+                bytes[++tracker] = lbb.get(1);
             }
             for (byte vb : ssd.asByteArray())
-            {
-                tracker++;
-                bytes[tracker] = vb;
-            }
+                bytes[++tracker] = vb;
         }
-        tracker++;
-        bytes[tracker] = new SSDEnd().getValue();
+        bytes[++tracker] = new SSDEnd().getValue();
         return bytes;
     }
 

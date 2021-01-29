@@ -1,4 +1,6 @@
-package me.superischroma.playground.ssd;
+package me.superischroma.playground.ssd.array;
+
+import me.superischroma.playground.ssd.SSD;
 
 import java.util.Arrays;
 

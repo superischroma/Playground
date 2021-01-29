@@ -1,11 +1,13 @@
 package me.superischroma.playground.ssd;
 
+import me.superischroma.playground.ssd.array.*;
+
 import java.lang.reflect.Field;
 
 /**
  * Structured Storage Data - SSD (.ssf)
  * Types:
- *  - SSD_End > signifies the end of an SSD_Collection
+ *  - SSD_End > a byte value (0) that signifies the end of an SSD_Collection
  *  - SSD_Byte > a byte
  *  - SSD_Short > a signed, 16-bit (2 byte) integer
  *  - SSD_Int > a signed, 32-bit (4 byte) integer
@@ -15,8 +17,11 @@ import java.lang.reflect.Field;
  *  - SSD_Collection > a grouping of SSDured Objects
  *  - SSD_String > a string of characters
  *  - SSD_Byte_Array > a sequence of bytes
+ *  - SSD_Short_Array > a sequence of signed, 16-bit (2 byte) integers
  *  - SSD_Int_Array > a sequence of signed, 32-bit (4 byte) integers
  *  - SSD_Long_Array > a sequence of signed, 64-bit (8 byte) integers
+ *  - SSD_Float_Array > a sequence of 32-bit (4 byte) IEEE-754 single-precision numbers
+ *  - SSD_Double_Array > a sequence of 64-bit (8 byte) IEEE-754 double-precision numbers
  * @param <T> Type to be stored as
  */
 public interface SSD<T>
@@ -49,10 +54,16 @@ public interface SSD<T>
             return new SSDString((String) object);
         if (object instanceof byte[])
             return new SSDByteArray((byte[]) object);
+        if (object instanceof short[])
+            return new SSDShortArray((short[]) object);
         if (object instanceof int[])
             return new SSDIntArray((int[]) object);
         if (object instanceof long[])
             return new SSDLongArray((long[]) object);
+        if (object instanceof float[])
+            return new SSDFloatArray((float[]) object);
+        if (object instanceof double[])
+            return new SSDDoubleArray((double[]) object);
         return null;
     }
 
@@ -78,10 +89,16 @@ public interface SSD<T>
             return new SSDString(null);
         if (type == SSDByteArray.TYPE)
             return new SSDByteArray(null);
+        if (type == SSDShortArray.TYPE)
+            return new SSDShortArray(null);
         if (type == SSDIntArray.TYPE)
             return new SSDIntArray(null);
         if (type == SSDLongArray.TYPE)
             return new SSDLongArray(null);
+        if (type == SSDFloatArray.TYPE)
+            return new SSDFloatArray(null);
+        if (type == SSDDoubleArray.TYPE)
+            return new SSDDoubleArray(null);
         return null;
     }
 
