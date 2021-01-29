@@ -27,6 +27,11 @@ public class SSDCollection implements SSD<Map<String, SSD>>
         return name;
     }
 
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
     public void set(String k, SSD v)
     {
         map.put(k, v);
