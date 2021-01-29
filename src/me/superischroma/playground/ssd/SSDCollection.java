@@ -1,19 +1,19 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class StructCollection implements Struct<Map<String, Struct>>
+public class SSDCollection implements SSD<Map<String, SSD>>
 {
-    public static final String NAME = "Struct_Collection";
+    public static final String NAME = "SSD_Collection";
     public static final byte TYPE = 7;
 
     private String name;
-    private final Map<String, Struct> map;
+    private final Map<String, SSD> map;
 
-    public StructCollection(String name)
+    public SSDCollection(String name)
     {
         this.name = name;
         this.map = new HashMap<>();
@@ -24,64 +24,64 @@ public class StructCollection implements Struct<Map<String, Struct>>
         return name;
     }
 
-    public void set(String k, Struct v)
+    public void set(String k, SSD v)
     {
         map.put(k, v);
     }
 
     public void setByte(String k, byte v)
     {
-        map.put(k, new StructByte(v));
+        map.put(k, new SSDByte(v));
     }
 
     public void setShort(String k, short v)
     {
-        map.put(k, new StructShort(v));
+        map.put(k, new SSDShort(v));
     }
 
     public void setInt(String k, int v)
     {
-        map.put(k, new StructInt(v));
+        map.put(k, new SSDInt(v));
     }
 
     public void setLong(String k, long v)
     {
-        map.put(k, new StructLong(v));
+        map.put(k, new SSDLong(v));
     }
 
     public void setFloat(String k, float v)
     {
-        map.put(k, new StructFloat(v));
+        map.put(k, new SSDFloat(v));
     }
 
     public void setDouble(String k, double v)
     {
-        map.put(k, new StructDouble(v));
+        map.put(k, new SSDDouble(v));
     }
 
-    public void setCollection(StructCollection collection)
+    public void setCollection(SSDCollection collection)
     {
         map.put(collection.getName(), collection);
     }
 
     public void setString(String k, String v)
     {
-        map.put(k, new StructString(v));
+        map.put(k, new SSDString(v));
     }
 
     public void setByteArray(String k, byte[] v)
     {
-        map.put(k, new StructByteArray(v));
+        map.put(k, new SSDByteArray(v));
     }
 
     public void setIntArray(String k, int[] v)
     {
-        map.put(k, new StructIntArray(v));
+        map.put(k, new SSDIntArray(v));
     }
 
     public void setLongArray(String k, long[] v)
     {
-        map.put(k, new StructLongArray(v));
+        map.put(k, new SSDLongArray(v));
     }
 
     public Set<String> keys()
@@ -89,96 +89,96 @@ public class StructCollection implements Struct<Map<String, Struct>>
         return map.keySet();
     }
 
-    public Struct get(String k)
+    public SSD get(String k)
     {
         return map.get(k);
     }
 
     public byte getByte(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructByte)
-            return ((StructByte) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDByte)
+            return ((SSDByte) d).getValue();
         return 0;
     }
 
     public short getShort(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructShort)
-            return ((StructShort) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDShort)
+            return ((SSDShort) d).getValue();
         return 0;
     }
 
     public int getInt(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructInt)
-            return ((StructInt) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDInt)
+            return ((SSDInt) d).getValue();
         return 0;
     }
 
     public long getLong(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructLong)
-            return ((StructLong) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDLong)
+            return ((SSDLong) d).getValue();
         return 0;
     }
 
     public float getFloat(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructFloat)
-            return ((StructFloat) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDFloat)
+            return ((SSDFloat) d).getValue();
         return 0;
     }
 
     public double getDouble(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructDouble)
-            return ((StructDouble) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDDouble)
+            return ((SSDDouble) d).getValue();
         return 0;
     }
 
-    public StructCollection getCollection(String k)
+    public SSDCollection getCollection(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructCollection)
-            return ((StructCollection) d);
-        return new StructCollection(name);
+        SSD d = map.get(k);
+        if (d instanceof SSDCollection)
+            return ((SSDCollection) d);
+        return new SSDCollection(name);
     }
 
     public String getString(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructString)
-            return ((StructString) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDString)
+            return ((SSDString) d).getValue();
         return null;
     }
 
     public byte[] getByteArray(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructByteArray)
-            return ((StructByteArray) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDByteArray)
+            return ((SSDByteArray) d).getValue();
         return null;
     }
 
     public int[] getIntArray(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructIntArray)
-            return ((StructIntArray) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDIntArray)
+            return ((SSDIntArray) d).getValue();
         return null;
     }
 
     public long[] getLongArray(String k)
     {
-        Struct d = map.get(k);
-        if (d instanceof StructLongArray)
-            return ((StructLongArray) d).getValue();
+        SSD d = map.get(k);
+        if (d instanceof SSDLongArray)
+            return ((SSDLongArray) d).getValue();
         return null;
     }
 
@@ -198,25 +198,25 @@ public class StructCollection implements Struct<Map<String, Struct>>
         // 1 for type (collection), 2 for length of collection name, 1 for end
         int size = 4;
         size += name.length(); // the name size for the name
-        for (Map.Entry<String, Struct> entry : map.entrySet())
+        for (Map.Entry<String, SSD> entry : map.entrySet())
         {
-            Struct struct = entry.getValue();
-            if (struct instanceof StructCollection) // we get it early here because collection lengths account for everything
+            SSD ssd = entry.getValue();
+            if (ssd instanceof SSDCollection) // we get it early here because collection lengths account for everything
             {
-                size += struct.length();
+                size += ssd.length();
                 continue;
             }
             // 1 for type, 2 for key name length
             size += 3;
-            if (struct.getValue() == null)
+            if (ssd.getValue() == null)
                 continue;
             size += entry.getKey().length();
-            if (struct instanceof StructString ||
-                    struct instanceof StructByteArray ||
-                    struct instanceof StructIntArray ||
-                    struct instanceof StructLongArray) // string: 2 for value length; array: 2 for array length
+            if (ssd instanceof SSDString ||
+                    ssd instanceof SSDByteArray ||
+                    ssd instanceof SSDIntArray ||
+                    ssd instanceof SSDLongArray) // string: 2 for value length; array: 2 for array length
                 size += 2;
-            size += struct.length();
+            size += ssd.length();
         }
         return size;
     }
@@ -245,7 +245,7 @@ public class StructCollection implements Struct<Map<String, Struct>>
             tracker++;
             bytes[tracker] = nb;
         }
-        for (Map.Entry<String, Struct> entry : map.entrySet())
+        for (Map.Entry<String, SSD> entry : map.entrySet())
         {
             tracker++;
             String k = entry.getKey();
@@ -254,12 +254,12 @@ public class StructCollection implements Struct<Map<String, Struct>>
                 System.err.println("Key of Data Length > 32767!");
                 return null;
             }
-            Struct struct = entry.getValue();
-            bytes[tracker] = struct.getType();
-            if (struct instanceof StructCollection)
+            SSD ssd = entry.getValue();
+            bytes[tracker] = ssd.getType();
+            if (ssd instanceof SSDCollection)
             {
                 tracker--;
-                for (byte vb : struct.asByteArray())
+                for (byte vb : ssd.asByteArray())
                 {
                     tracker++;
                     bytes[tracker] = vb;
@@ -277,51 +277,51 @@ public class StructCollection implements Struct<Map<String, Struct>>
                 tracker++;
                 bytes[tracker] = kb;
             }
-            if (struct.getValue() == null) continue;
-            if (struct instanceof StructString) // the length of the string
+            if (ssd.getValue() == null) continue;
+            if (ssd instanceof SSDString) // the length of the string
             {
-                String v = ((StructString) struct).getValue();
+                String v = ((SSDString) ssd).getValue();
                 ByteBuffer vbb = ByteBuffer.allocate(2).putShort((short) v.length());
                 tracker++;
                 bytes[tracker] = vbb.get(0);
                 tracker++;
                 bytes[tracker] = vbb.get(1);
             }
-            if (struct instanceof StructByteArray)
+            if (ssd instanceof SSDByteArray)
             {
-                byte[] bs = ((StructByteArray) struct).getValue();
+                byte[] bs = ((SSDByteArray) ssd).getValue();
                 ByteBuffer bbb = ByteBuffer.allocate(2).putShort((short) bs.length);
                 tracker++;
                 bytes[tracker] = bbb.get(0);
                 tracker++;
                 bytes[tracker] = bbb.get(1);
             }
-            if (struct instanceof StructIntArray)
+            if (ssd instanceof SSDIntArray)
             {
-                int[] is = ((StructIntArray) struct).getValue();
+                int[] is = ((SSDIntArray) ssd).getValue();
                 ByteBuffer ibb = ByteBuffer.allocate(2).putShort((short) is.length);
                 tracker++;
                 bytes[tracker] = ibb.get(0);
                 tracker++;
                 bytes[tracker] = ibb.get(1);
             }
-            if (struct instanceof StructLongArray)
+            if (ssd instanceof SSDLongArray)
             {
-                long[] is = ((StructLongArray) struct).getValue();
+                long[] is = ((SSDLongArray) ssd).getValue();
                 ByteBuffer lbb = ByteBuffer.allocate(2).putShort((short) is.length);
                 tracker++;
                 bytes[tracker] = lbb.get(0);
                 tracker++;
                 bytes[tracker] = lbb.get(1);
             }
-            for (byte vb : struct.asByteArray())
+            for (byte vb : ssd.asByteArray())
             {
                 tracker++;
                 bytes[tracker] = vb;
             }
         }
         tracker++;
-        bytes[tracker] = new StructEnd().getValue();
+        bytes[tracker] = new SSDEnd().getValue();
         return bytes;
     }
 
@@ -329,10 +329,10 @@ public class StructCollection implements Struct<Map<String, Struct>>
      * Unused.
      */
     @Override
-    public void setValue(Map<String, Struct> value) {}
+    public void setValue(Map<String, SSD> value) {}
 
     @Override
-    public Map<String, Struct> getValue()
+    public Map<String, SSD> getValue()
     {
         return map;
     }
@@ -342,17 +342,17 @@ public class StructCollection implements Struct<Map<String, Struct>>
         StringBuilder builder = new StringBuilder()
                 .append(name + ":{");
         boolean c = false;
-        for (Map.Entry<String, Struct> entry : map.entrySet())
+        for (Map.Entry<String, SSD> entry : map.entrySet())
         {
             if (!c)
                 c = true;
             else
                 builder.append(",");
             String key = entry.getKey();
-            Struct struct = entry.getValue();
-            if (!(struct instanceof StructCollection))
+            SSD ssd = entry.getValue();
+            if (!(ssd instanceof SSDCollection))
                 builder.append(key).append(":");
-            builder.append(struct.toString());
+            builder.append(ssd.toString());
         }
         builder.append("}");
         return builder.toString();

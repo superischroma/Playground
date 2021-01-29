@@ -1,15 +1,13 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
-import java.util.Arrays;
-
-public class StructByteArray implements Struct<byte[]>
+public class SSDString implements SSD<String>
 {
-    public static final String NAME = "Struct_Byte_Array";
-    public static final byte TYPE = 9;
+    public static final String NAME = "SSD_String";
+    public static final byte TYPE = 8;
 
-    private byte[] value;
+    private String value;
 
-    public StructByteArray(byte[] value)
+    public SSDString(String value)
     {
         this.value = value;
     }
@@ -21,13 +19,13 @@ public class StructByteArray implements Struct<byte[]>
     }
 
     @Override
-    public void setValue(byte[] value)
+    public void setValue(String value)
     {
         this.value = value;
     }
 
     @Override
-    public byte[] getValue()
+    public String getValue()
     {
         return value;
     }
@@ -35,7 +33,7 @@ public class StructByteArray implements Struct<byte[]>
     @Override
     public int length()
     {
-        return value.length;
+        return value.length();
     }
 
     @Override
@@ -47,11 +45,11 @@ public class StructByteArray implements Struct<byte[]>
     @Override
     public byte[] asByteArray()
     {
-        return value;
+        return value.getBytes();
     }
 
     public String toString()
     {
-        return Arrays.toString(value);
+        return value;
     }
 }

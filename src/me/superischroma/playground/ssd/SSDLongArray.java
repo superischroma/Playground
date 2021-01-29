@@ -1,16 +1,16 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-public class StructIntArray implements Struct<int[]>
+public class SSDLongArray implements SSD<long[]>
 {
-    public static final String NAME = "Struct_Int_Array";
-    public static final byte TYPE = 10;
+    public static final String NAME = "SSD_Long_Array";
+    public static final byte TYPE = 11;
 
-    private int[] value;
+    private long[] value;
 
-    public StructIntArray(int[] value)
+    public SSDLongArray(long[] value)
     {
         this.value = value;
     }
@@ -22,13 +22,13 @@ public class StructIntArray implements Struct<int[]>
     }
 
     @Override
-    public void setValue(int[] value)
+    public void setValue(long[] value)
     {
         this.value = value;
     }
 
     @Override
-    public int[] getValue()
+    public long[] getValue()
     {
         return value;
     }
@@ -36,7 +36,7 @@ public class StructIntArray implements Struct<int[]>
     @Override
     public int length()
     {
-        return value.length * 4;
+        return value.length * 8;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class StructIntArray implements Struct<int[]>
     public byte[] asByteArray()
     {
         ByteBuffer bb = ByteBuffer.allocate(length());
-        for (int i : value)
-            bb.putInt(i);
+        for (long l : value)
+            bb.putLong(l);
         return bb.array();
     }
 

@@ -1,7 +1,7 @@
 package me.superischroma.playground.command;
 
-import me.superischroma.playground.struct.StructCollection;
-import me.superischroma.playground.struct.StructIO;
+import me.superischroma.playground.ssd.SSDCollection;
+import me.superischroma.playground.ssd.SSDIO;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,14 +13,14 @@ public class TestCommand extends AbstractCommand
     @Override
     public void run(String[] args) throws IOException
     {
-        StructCollection collection = new StructCollection("Bro");
+        SSDCollection collection = new SSDCollection("Bro");
         collection.setShort("SmallInt", (short) 32767);
         collection.setIntArray("CoolInts", new int[]{83828, 39298, 382});
         collection.setByteArray("CoolBytes", new byte[]{});
         collection.setLongArray("CoolLongs", new long[]{94290973473247L, 42372347832782L});
         Messenger.send(Arrays.toString(collection.asByteArray()));
-        StructIO.write(new File("./resources/test.ssf"), collection);
-        Messenger.send(StructIO.read(new File("./resources/test.ssf")).toString());
+        SSDIO.write(new File("./resources/test.ssf"), collection);
+        Messenger.send(SSDIO.read(new File("./resources/test.ssf")).toString());
         /*
         StructCollection collection = new StructCollection("TestCollection");
         collection.setString("first", "bruh");

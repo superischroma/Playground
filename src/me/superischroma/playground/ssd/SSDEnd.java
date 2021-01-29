@@ -1,8 +1,8 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
-public class StructEnd implements Struct<Byte>
+public class SSDEnd implements SSD<Byte>
 {
-    public static final String NAME = "Struct_End";
+    public static final String NAME = "SSD_End";
     public static final byte TYPE = 0;
 
     @Override

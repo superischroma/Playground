@@ -1,13 +1,13 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
-public class StructByte implements Struct<Byte>
+public class SSDByte implements SSD<Byte>
 {
-    public static final String NAME = "Struct_Byte";
+    public static final String NAME = "SSD_Byte";
     public static final byte TYPE = 1;
 
     private byte value;
 
-    public StructByte(byte value)
+    public SSDByte(byte value)
     {
         this.value = value;
     }

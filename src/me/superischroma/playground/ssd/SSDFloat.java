@@ -1,15 +1,15 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
 import java.nio.ByteBuffer;
 
-public class StructFloat implements Struct<Float>
+public class SSDFloat implements SSD<Float>
 {
-    public static final String NAME = "Struct_Float";
+    public static final String NAME = "SSD_Float";
     public static final byte TYPE = 5;
 
     private float value;
 
-    public StructFloat(float value)
+    public SSDFloat(float value)
     {
         this.value = value;
     }

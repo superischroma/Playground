@@ -1,15 +1,15 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
 import java.nio.ByteBuffer;
 
-public class StructInt implements Struct<Integer>
+public class SSDShort implements SSD<Short>
 {
-    public static final String NAME = "Struct_Int";
-    public static final byte TYPE = 3;
+    public static final String NAME = "SSD_Short";
+    public static final byte TYPE = 2;
 
-    private int value;
+    private short value;
 
-    public StructInt(int value)
+    public SSDShort(short value)
     {
         this.value = value;
     }
@@ -21,13 +21,13 @@ public class StructInt implements Struct<Integer>
     }
 
     @Override
-    public void setValue(Integer value)
+    public void setValue(Short value)
     {
         this.value = value;
     }
 
     @Override
-    public Integer getValue()
+    public Short getValue()
     {
         return value;
     }
@@ -35,13 +35,13 @@ public class StructInt implements Struct<Integer>
     @Override
     public int length()
     {
-        return 4;
+        return 2;
     }
 
     @Override
     public byte[] asByteArray()
     {
-        return ByteBuffer.allocate(length()).putInt(value).array();
+        return ByteBuffer.allocate(length()).putShort(value).array();
     }
 
     public String toString()

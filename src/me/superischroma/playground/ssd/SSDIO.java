@@ -1,4 +1,4 @@
-package me.superischroma.playground.struct;
+package me.superischroma.playground.ssd;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -9,19 +9,19 @@ import java.util.List;
 /**
  * Static methods to read and write Structured Storage Data.
  */
-public final class StructIO
+public final class SSDIO
 {
-    public static StructCollection read(byte[] bytes)
+    public static SSDCollection read(byte[] bytes)
     {
-        StructCollection parent = null;
-        List<StructCollection> collections = new ArrayList<>();
+        SSDCollection parent = null;
+        List<SSDCollection> collections = new ArrayList<>();
         int tracker = -1;
         while (tracker < bytes.length - 1)
         {
-            Struct struct = Struct.create(bytes[++tracker]);
-            if (struct instanceof StructEnd)
+            SSD ssd = SSD.create(bytes[++tracker]);
+            if (ssd instanceof SSDEnd)
             {
-                StructCollection c = !collections.isEmpty() ? collections.get(collections.size() - 1) : parent;
+                SSDCollection c = !collections.isEmpty() ? collections.get(collections.size() - 1) : parent;
                 if (!c.equals(parent))
                 {
                     (collections.size() < 2 ? parent : collections.get(collections.size() - 2)).set(c.getName(), c);
@@ -34,9 +34,9 @@ public final class StructIO
             for (int i = 0; i < nl; i++)
                 nbs[i] = bytes[++tracker];
             String n = new String(nbs);
-            if (struct instanceof StructCollection)
+            if (ssd instanceof SSDCollection)
             {
-                StructCollection c = new StructCollection(n);
+                SSDCollection c = new SSDCollection(n);
                 if (collections.stream().filter((collection) -> collection.getName().equals(c.getName())).toArray().length != 0)
                     continue;
                 if (parent == null)
@@ -46,30 +46,30 @@ public final class StructIO
                 continue;
             }
             Object val = null;
-            int length = struct.usesSpecialLength() ? 0 : struct.length();
-            if (struct instanceof StructByte)
+            int length = ssd.usesSpecialLength() ? 0 : ssd.length();
+            if (ssd instanceof SSDByte)
                 val = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += length)).get();
-            if (struct instanceof StructShort)
+            if (ssd instanceof SSDShort)
                 val = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += length)).getShort();
-            if (struct instanceof StructInt)
+            if (ssd instanceof SSDInt)
                 val = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += length)).getInt();
-            if (struct instanceof StructLong)
+            if (ssd instanceof SSDLong)
                 val = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += length)).getLong();
-            if (struct instanceof StructFloat)
+            if (ssd instanceof SSDFloat)
                 val = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += length)).getFloat();
-            if (struct instanceof StructDouble)
+            if (ssd instanceof SSDDouble)
                 val = ByteBuffer.wrap(Arrays.copyOfRange(bytes, ++tracker, tracker += length)).getDouble();
-            if (struct instanceof StructString)
+            if (ssd instanceof SSDString)
             {
                 short strl = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
                 val = new String(Arrays.copyOfRange(bytes, ++tracker, tracker += strl));
             }
-            if (struct instanceof StructByteArray)
+            if (ssd instanceof SSDByteArray)
             {
                 short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
                 val = Arrays.copyOfRange(bytes, ++tracker, tracker += al);
             }
-            if (struct instanceof StructIntArray)
+            if (ssd instanceof SSDIntArray)
             {
                 short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
                 int[] is = new int[al];
@@ -81,7 +81,7 @@ public final class StructIO
                 tracker++;
                 val = is;
             }
-            if (struct instanceof StructLongArray)
+            if (ssd instanceof SSDLongArray)
             {
                 short al = ByteBuffer.wrap(new byte[]{bytes[++tracker], bytes[++tracker]}).getShort();
                 long[] ls = new long[al];
@@ -94,7 +94,7 @@ public final class StructIO
                 val = ls;
             }
             tracker--;
-            Struct so = Struct.create(val);
+            SSD so = SSD.create(val);
             if (collections.size() != 0)
                 collections.get(collections.size() - 1).set(n, so);
             else
@@ -103,7 +103,7 @@ public final class StructIO
         return parent;
     }
 
-    public static StructCollection read(File file) throws IOException
+    public static SSDCollection read(File file) throws IOException
     {
         FileInputStream in = new FileInputStream(file);
         byte[] buffer = new byte[in.available()];
@@ -112,7 +112,7 @@ public final class StructIO
         return read(buffer);
     }
 
-    public static void write(File file, StructCollection collection) throws IOException
+    public static void write(File file, SSDCollection collection) throws IOException
     {
         FileOutputStream out = new FileOutputStream(file);
         out.write(collection.asByteArray());
