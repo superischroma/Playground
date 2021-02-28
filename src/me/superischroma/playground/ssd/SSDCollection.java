@@ -280,9 +280,9 @@ public class SSDCollection implements SSD<Map<String, SSD>>
                 continue;
             }
             // 1 for type, 2 for key name length
-            size += 3;
             if (ssd.getValue() == null)
                 continue;
+            size += 3;
             size += entry.getKey().length();
             if (ssd.usesSpecialLength()) // string: 2 for value length; array: 2 for array length
                 size += 2;
@@ -314,7 +314,6 @@ public class SSDCollection implements SSD<Map<String, SSD>>
             bytes[++tracker] = nb;
         for (Map.Entry<String, SSD> entry : map.entrySet())
         {
-            tracker++;
             String k = entry.getKey();
             if (k.length() > Short.MAX_VALUE)
             {
@@ -322,6 +321,8 @@ public class SSDCollection implements SSD<Map<String, SSD>>
                 return null;
             }
             SSD ssd = entry.getValue();
+            if (ssd.getValue() == null) continue;
+            tracker++;
             bytes[tracker] = ssd.getType();
             if (ssd instanceof SSDCollection)
             {
@@ -336,7 +337,6 @@ public class SSDCollection implements SSD<Map<String, SSD>>
             byte[] kbs = k.getBytes();
             for (byte kb : kbs)
                 bytes[++tracker] = kb;
-            if (ssd.getValue() == null) continue;
             if (ssd instanceof SSDString) // the length of the string
             {
                 String v = ((SSDString) ssd).getValue();

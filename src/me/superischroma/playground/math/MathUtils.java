@@ -19,8 +19,8 @@ public final class MathUtils
         return true;
     }
 
-    public static double cqrt(double d)
+    public static double root(double d, int root)
     {
-        return Math.pow(d, 1.0 / 3.0);
+        return Math.pow(d, 1.0 / (double) root);
     }
 }

@@ -1,7 +1,11 @@
 package me.superischroma.playground.item;
 
-import me.superischroma.playground.Playground;
+import me.superischroma.playground.ssd.SSD;
+import me.superischroma.playground.ssd.SSDCollection;
+import me.superischroma.playground.ssd.SSDIO;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -104,13 +108,67 @@ public class Inventory implements Iterable<ItemStack>
         return Arrays.asList(items).iterator();
     }
 
-    public String toJSON()
+    public void save(File file)
     {
-        return Playground.GSON.toJson(this, Inventory.class);
+        try
+        {
+            file.createNewFile();
+            SSDCollection collection = new SSDCollection("Inventory");
+            collection.setString("Name", name);
+            collection.setInt("Size", size);
+            for (int i = 0; i < items.length; i++)
+            {
+                ItemStack stack = items[i];
+                ItemMeta meta = stack.getItemMeta();
+                SSDCollection slot = new SSDCollection(String.valueOf(i));
+                slot.setString("Type", stack.getMaterial().name());
+                slot.setInt("Amount", stack.getAmount());
+                SSDCollection metaCollection = new SSDCollection("Meta");
+                metaCollection.setString("DisplayName", meta.getDisplayName());
+                if (meta.getRarity() != null)
+                    metaCollection.setString("Rarity", meta.getRarity().name());
+                slot.setCollection(metaCollection);
+                collection.setCollection(slot);
+            }
+            SSDIO.write(file, collection);
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
     }
 
-    public static Inventory of(String json)
+    public static Inventory of(File file)
     {
-        return Playground.GSON.fromJson(json, Inventory.class);
+        if (!SSD.isSSDFile(file))
+            return null;
+        try
+        {
+            SSDCollection collection = SSDIO.read(file);
+            if (!collection.getName().equals("Inventory"))
+                return null;
+            Inventory inventory = new Inventory(collection.getString("Name"), collection.getInt("Size"));
+            for (String key : collection.keys())
+            {
+                try
+                {
+                    int i = Integer.parseInt(key);
+                    SSDCollection slot = collection.getCollection(key);
+                    ItemStack stack = new ItemStack(Material.valueOf(slot.getString("Type")), slot.getInt("Amount"));
+                    SSDCollection metaCollection = slot.getCollection("Meta");
+                    ItemMeta meta = stack.getItemMeta();
+                    meta.setDisplayName(metaCollection.getString("DisplayName"));
+                    if (metaCollection.getString("Rarity") != null)
+                        meta.setRarity(Rarity.valueOf(metaCollection.getString("Rarity")));
+                    inventory.setItem(i, stack);
+                }
+                catch (NumberFormatException ignored) {}
+            }
+            return inventory;
+        }
+        catch (IOException ex)
+        {
+            return null;
+        }
     }
 }

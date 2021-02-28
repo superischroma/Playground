@@ -1,5 +1,11 @@
 package me.superischroma.playground.school;
 
+import me.superischroma.playground.ssd.SSD;
+import me.superischroma.playground.ssd.SSDCollection;
+import me.superischroma.playground.ssd.SSDIO;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Customer
@@ -21,6 +27,32 @@ public class Customer
         this.drink = DRINKS[ThreadLocalRandom.current().nextInt(0, DRINKS.length)];
     }
 
+    private Customer(String name, String entree, String drink)
+    {
+        this.name = name;
+        this.entree = entree;
+        this.drink = drink;
+    }
+
+    public void save()
+    {
+        File file = new File("./customers/Customer_" + name + ".ssf");
+        try
+        {
+
+            file.createNewFile();
+            SSDCollection collection = new SSDCollection("Data");
+            collection.setString("Name", name);
+            collection.setString("Entree", entree);
+            collection.setString("Drink", drink);
+            SSDIO.write(file, collection);
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
     public String getName()
     {
         return name;
@@ -40,5 +72,20 @@ public class Customer
     public String toString()
     {
         return name + " (" + entree + ", " + drink + ")";
+    }
+
+    public static Customer of(File file)
+    {
+        if (!SSD.isSSDFile(file))
+            return null;
+        try
+        {
+            SSDCollection collection = SSDIO.read(file);
+            return new Customer(collection.getString("Name"), collection.getString("Entree"), collection.getString("Drink"));
+        }
+        catch (IOException ex)
+        {
+            return null;
+        }
     }
 }

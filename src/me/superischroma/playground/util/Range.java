@@ -36,9 +36,9 @@ public class Range<T extends Number> implements Cloneable
     }
 
     @Override
-    public Range<T> clone()
+    public Range<T> clone() throws CloneNotSupportedException
     {
-        return new Range<>(min, max);
+        return (Range<T>) super.clone();
     }
 
     public int within()
@@ -78,5 +78,15 @@ public class Range<T extends Number> implements Cloneable
     public double getRandomDouble()
     {
         return PlaygroundUtils.random(min.doubleValue(), max.doubleValue());
+    }
+
+    public static Range<Integer> largestInteger()
+    {
+        return new Range<>(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    public static Range<Double> largestDouble()
+    {
+        return new Range<>(Double.MIN_VALUE, Double.MAX_VALUE);
     }
 }

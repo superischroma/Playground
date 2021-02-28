@@ -2,10 +2,16 @@ package me.superischroma.playground.ssd;
 
 import me.superischroma.playground.ssd.array.*;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
 /**
  * Structured Storage Data - SSD (.ssf)
+ *
+ * Notes:
+ *  - All arrays have a maximum length of 32767 elements
+ *  - All strings have a maximum length of 32767 characters
+ *
  * Types:
  *  - SSD_End > a byte value (0) that signifies the end of an SSD_Collection
  *  - SSD_Byte > a byte
@@ -14,7 +20,7 @@ import java.lang.reflect.Field;
  *  - SSD_Long > a signed, 64-bit (8 byte) integer
  *  - SSD_Float > a 32-bit (4 byte) IEEE-754 single-precision number
  *  - SSD_Double > a 64-bit (8 byte) IEEE-754 double-precision number
- *  - SSD_Collection > a grouping of SSDured Objects
+ *  - SSD_Collection > a grouping of Structured Objects
  *  - SSD_String > a string of characters
  *  - SSD_Byte_Array > a sequence of bytes
  *  - SSD_Short_Array > a sequence of signed, 16-bit (2 byte) integers
@@ -119,5 +125,10 @@ public interface SSD<T>
             ex.printStackTrace();
             return null;
         }
+    }
+
+    static boolean isSSDFile(File file)
+    {
+        return file.getAbsolutePath().endsWith(".ssf");
     }
 }

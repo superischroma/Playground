@@ -10,7 +10,6 @@ import me.superischroma.playground.listener.TestListener;
 import me.superischroma.playground.reflect.Reflections;
 import me.superischroma.playground.storage.MappedTextFile;
 
-import java.io.*;
 import java.util.List;
 
 public class Playground
@@ -28,7 +27,7 @@ public class Playground
         return inventory;
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException
+    public static void main(String[] args)
     {
         inventory = new Inventory("Inventory", 36);
         functionCache = new MappedTextFile("./functions/cache.txt");
