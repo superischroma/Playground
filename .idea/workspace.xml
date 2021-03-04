@@ -29,7 +29,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../google-api-java-client/libs" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Documents/gson-2.8.6.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -37,9 +37,8 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src\me\superischroma\playground" />
-      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\functions" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="me.superischroma.playground.event" />
@@ -50,8 +49,9 @@
       <recent name="me.superischroma.playground.school" />
       <recent name="me.superischroma.playground.ssd" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\functions" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src\me\superischroma\playground" />
+      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Playground">
@@ -102,7 +102,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -153,10 +153,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="363" y="23" key="#com.intellij.unscramble.UnscrambleDialog/0.0.1366.728@0.0.1366.728" timestamp="1611935360200" />
-    <state x="410" y="105" key="FileChooserDialogImpl" timestamp="1614201411136">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="576" y="150" key="FileChooserDialogImpl" timestamp="1614866782120">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="410" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1614201411136" />
+    <state x="576" y="150" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614866782120" />
     <state width="1323" height="114" key="GridCell.Tab.0.bottom" timestamp="1614440548187">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -173,11 +174,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="114" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614440548187" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1614286642219">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="259" y="0" key="SettingsEditor" timestamp="1614866785916">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1614286642219" />
-    <state x="259" y="0" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1610309185761" />
+    <state x="259" y="0" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614866785916" />
     <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611896030377">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
