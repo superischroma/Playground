@@ -168,4 +168,12 @@ public enum Element
                 element.getSymbol().equals(symbol)).collect(Collectors.toList());
         return results.size() != 0 ? results.get(0) : null;
     }
+
+    public static Element resolve(String resolvable)
+    {
+        Element element = getByName(resolvable);
+        if (element == null)
+            element = getBySymbol(resolvable);
+        return element;
+    }
 }

@@ -1,8 +1,6 @@
 package me.superischroma.playground.util;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 
