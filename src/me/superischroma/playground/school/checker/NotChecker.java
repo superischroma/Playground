@@ -1,7 +1,5 @@
 package me.superischroma.playground.school.checker;
 
-import me.superischroma.playground.school.checker.Checker;
-
 public class NotChecker implements Checker
 {
     private final Checker checker;

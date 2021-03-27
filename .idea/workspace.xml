@@ -13,8 +13,8 @@
         <option value="JavaFXApplication" />
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,21 +37,22 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\functions" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src\me\superischroma\playground" />
+      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="me.superischroma.playground.event" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="me.superischroma.playground.school.zoo" />
       <recent name="me.superischroma.playground.command" />
       <recent name="me.superischroma.playground.ssd.array" />
       <recent name="me.superischroma.playground.school" />
       <recent name="me.superischroma.playground.ssd" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src\me\superischroma\playground" />
-      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\1662987\Documents\IntelliJ\Projects\Playground\functions" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Playground">
@@ -94,15 +95,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Zoo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.superischroma.playground.school.zoo.Zoo" />
+      <module name="Playground" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.superischroma.playground.school.zoo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Playground" />
+        <item itemvalue="Application.Zoo" />
         <item itemvalue="Application.TableTester" />
         <item itemvalue="Application.SlidePuzzle15" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -117,10 +132,11 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="167" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1612750234102">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="593" y="239" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614866900863">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="422" y="167" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1612750234102" />
+    <state x="593" y="239" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614866900863" />
     <state x="488" y="73" key="#com.intellij.ide.util.MemberChooser" timestamp="1614286919696">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -158,22 +174,30 @@
     </state>
     <state x="410" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1614201411136" />
     <state x="576" y="150" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1614866782120" />
-    <state width="1323" height="114" key="GridCell.Tab.0.bottom" timestamp="1614440548187">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom" timestamp="1616863758457">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="114" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614440548187" />
-    <state width="1323" height="114" key="GridCell.Tab.0.center" timestamp="1614440548187">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1616863758457" />
+    <state width="1877" height="198" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616107244718" />
+    <state width="1877" height="198" key="GridCell.Tab.0.center" timestamp="1616863758457">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="114" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614440548187" />
-    <state width="1323" height="114" key="GridCell.Tab.0.left" timestamp="1614440548186">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="198" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1616863758457" />
+    <state width="1877" height="198" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616107244718" />
+    <state width="1877" height="198" key="GridCell.Tab.0.left" timestamp="1616863758457">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="114" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614440548186" />
-    <state width="1323" height="114" key="GridCell.Tab.0.right" timestamp="1614440548187">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1877" height="198" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1616863758457" />
+    <state width="1877" height="198" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616107244718" />
+    <state width="1877" height="198" key="GridCell.Tab.0.right" timestamp="1616863758457">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="114" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614440548187" />
+    <state width="1877" height="198" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1616863758457" />
+    <state width="1877" height="198" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616107244718" />
     <state x="259" y="0" key="SettingsEditor" timestamp="1614866785916">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

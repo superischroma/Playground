@@ -8,6 +8,10 @@ import me.superischroma.playground.event.EventManager;
 import me.superischroma.playground.item.*;
 import me.superischroma.playground.listener.TestListener;
 import me.superischroma.playground.reflect.Reflections;
+import me.superischroma.playground.school.bts.CollegeStudent;
+import me.superischroma.playground.school.bts.SchoolPerson;
+import me.superischroma.playground.school.bts.Student;
+import me.superischroma.playground.school.bts.Teacher;
 import me.superischroma.playground.storage.MappedTextFile;
 
 import java.util.List;
