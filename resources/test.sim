@@ -1,0 +1,6 @@
+int32 val = 15
+char nl = 10
+
+out val, nl
+div val, 5
+out val, nl

@@ -13,6 +13,11 @@ import java.util.List;
  */
 public final class SSDIO
 {
+    /**
+     * Constructs an SSD_Collection from a sequence of bytes
+     * @param bytes The bytes to construct the object from
+     * @return The newly constructed SSD_Collection
+     */
     public static SSDCollection read(byte[] bytes)
     {
         SSDCollection parent = null;
@@ -154,6 +159,12 @@ public final class SSDIO
         return parent;
     }
 
+    /**
+     * Constructs an SSD_Collection from a binary file
+     * @param file The file to construct from
+     * @return The newly constructed SSD_Collection
+     * @throws IOException If there was an error reading the file
+     */
     public static SSDCollection read(File file) throws IOException
     {
         FileInputStream in = new FileInputStream(file);
@@ -163,6 +174,12 @@ public final class SSDIO
         return read(buffer);
     }
 
+    /**
+     * Serializes an SSD_Collection into a file
+     * @param file The destination file of the write
+     * @param collection The SSD_Collection to write to the file
+     * @throws IOException If there was an error writing to the file
+     */
     public static void write(File file, SSDCollection collection) throws IOException
     {
         FileOutputStream out = new FileOutputStream(file);
