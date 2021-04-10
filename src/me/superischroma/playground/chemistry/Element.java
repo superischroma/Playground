@@ -1,5 +1,7 @@
 package me.superischroma.playground.chemistry;
 
+import me.superischroma.playground.ObjectResolutionException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -174,6 +176,8 @@ public enum Element
         Element element = getByName(resolvable);
         if (element == null)
             element = getBySymbol(resolvable);
+        if (element == null)
+            throw new ObjectResolutionException(String.class, Element.class);
         return element;
     }
 }

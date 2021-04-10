@@ -45,7 +45,7 @@ public final class PlaygroundUtils
         return list.get(random(0, list.size() - 1));
     }
 
-    public static <T> boolean removeIf(List<T> list, Predicate<? super T> condition, int limit)
+    public static <T> int removeIf(List<T> list, Predicate<? super T> condition, int limit)
     {
         int i = 0;
         for (Iterator<T> iter = list.iterator(); iter.hasNext();)
@@ -59,10 +59,10 @@ public final class PlaygroundUtils
                 i++;
             }
         }
-        return i > 0;
+        return i;
     }
 
-    public static <T> boolean removeIf(List<T> list, Predicate<? super T> condition)
+    public static <T> int removeIf(List<T> list, Predicate<? super T> condition)
     {
         return removeIf(list, condition, 0);
     }
