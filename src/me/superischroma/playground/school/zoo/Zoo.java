@@ -1,9 +1,8 @@
 package me.superischroma.playground.school.zoo;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Zoo
 {
+    /*
     public static void main(String[] args)
     {
         for (int i = 0; i < 10; i++)
@@ -23,4 +22,5 @@ public class Zoo
         }
         return null;
     }
+     */
 }

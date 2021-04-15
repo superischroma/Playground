@@ -17,4 +17,46 @@ public final class ArraysX
     {
         return join(Arrays.asList(list), separator);
     }
+
+    public static void insertionSort(int[] elements)
+    {
+        int i = 0;
+        for (int j = 1; j < elements.length; j++)
+        {
+            int temp = elements[j];
+            int possibleIndex = j;
+            while (possibleIndex > 0 && temp < elements[possibleIndex - 1])
+            {
+                elements[possibleIndex] = elements[possibleIndex - 1];
+                possibleIndex--;    // Line 10
+                i++;
+            }
+            elements[possibleIndex] = temp;
+        }
+        System.out.println(i);
+    }
+
+    public static void selectionSort(int[] elements)
+    {
+        int b = 0;
+        for (int j = 0; j < elements.length - 1; j++)
+        {
+            int minIndex = j;
+            for (int k = j + 1; k < elements.length; k++)
+            {
+                if (elements[k] < elements[minIndex])
+                {
+                    minIndex = k;
+                    b++;
+                }
+            }
+            if (j != minIndex)
+            {
+                int temp = elements[j];
+                elements[j] = elements[minIndex];
+                elements[minIndex] = temp;    // Line 19
+            }
+        }
+        System.out.println(b);
+    }
 }
