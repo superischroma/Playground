@@ -1,6 +1,14 @@
 package me.superischroma.playground.util;
 
+import me.superischroma.playground.http.HTTP;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 
@@ -65,5 +73,21 @@ public final class PlaygroundUtils
     public static <T> int removeIf(List<T> list, Predicate<? super T> condition)
     {
         return removeIf(list, condition, 0);
+    }
+
+    public static boolean writeImage(Image src, File dest, String format) throws IOException
+    {
+        BufferedImage bi = new BufferedImage(src.getWidth(null), src.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bi.createGraphics();
+        g.drawImage(src, 0, 0, null);
+        g.dispose();
+        if (!dest.exists())
+            dest.createNewFile();
+        return ImageIO.write(bi, format, dest);
+    }
+
+    public static boolean writeImage(Image src, File dest) throws IOException
+    {
+        return writeImage(src, dest, "png");
     }
 }

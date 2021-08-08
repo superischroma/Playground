@@ -6,6 +6,8 @@ package me.superischroma.playground.recreation;
  * its speed at retrieving values.
  * The general speed for retrieving map values
  * is around O(n) for this map implementation.
+ * For comparison, a HashMap generally has a
+ * time complexity of O(1).
  *
  * @param <K>
  * @param <V>

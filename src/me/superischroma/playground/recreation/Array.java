@@ -21,7 +21,7 @@ import java.util.function.Predicate;
  *
  * @param <T>
  */
-public class Array<T> implements Cloneable, Iterable<T>
+public class Array<T> implements ArrayLike<T>
 {
     private Object[] elements;
     private int size;
@@ -127,6 +127,7 @@ public class Array<T> implements Cloneable, Iterable<T>
      * @return The value in that location
      * @throws ArrayIndexOutOfBoundsException When the index is outside of the range of the Array.
      */
+    @Override
     public T get(int index)
     {
         checkBounds(index);
@@ -305,6 +306,7 @@ public class Array<T> implements Cloneable, Iterable<T>
      * Checks if this dynamic array has no elements
      * @return Whether no elements exist
      */
+    @Override
     public boolean isEmpty()
     {
         return size == 0;
@@ -314,6 +316,7 @@ public class Array<T> implements Cloneable, Iterable<T>
      * Retrieves the size of this dynamic array
      * @return The current size
      */
+    @Override
     public int size()
     {
         return size;
@@ -335,6 +338,7 @@ public class Array<T> implements Cloneable, Iterable<T>
      * @return The value that was originally in this location
      * @throws ArrayIndexOutOfBoundsException When the index is outside of the range of the Array.
      */
+    @Override
     public T set(int index, T value)
     {
         checkBounds(index);
@@ -519,7 +523,8 @@ public class Array<T> implements Cloneable, Iterable<T>
             @Override
             public void add(T t)
             {
-                push(t);
+                insert(position, t);
+                copy.insert(position, t);
             }
         };
     }
