@@ -116,7 +116,7 @@ public class Buffer
 
     public Buffer()
     {
-        this(50, false);
+        this(1024, false);
     }
 
     public Buffer(Buffer buffer)
