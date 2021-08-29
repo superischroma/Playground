@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -514,7 +515,7 @@ public class Buffer
         return this.readString(new AtomicInteger(index));
     }
 
-    public String readString(AtomicInteger index)
+    private String readString(AtomicInteger index)
     {
         int blen = this.readInt(index.getAndAdd(4));
         Charset charset = AVAILABLE_CHARSETS[this.read(index.getAndAdd(1))];
@@ -833,7 +834,7 @@ public class Buffer
         return new ArrayList<>(Arrays.asList(this.readArray(clazz)));
     }
 
-    public int calcArrBytes(Object[] arr)
+    private int calcArrBytes(Object[] arr)
     {
         int bs = 0;
         for (Object el : arr)
@@ -860,7 +861,7 @@ public class Buffer
         return bs;
     }
 
-    public int calcColBytes(Collection col)
+    private int calcColBytes(Collection col)
     {
         int bs = 0;
         for (Object el : col)
@@ -903,7 +904,7 @@ public class Buffer
         return readObject(new AtomicInteger(index), clazz);
     }
 
-    public <T> T readObject(AtomicInteger index, Class<T> clazz)
+    private <T> T readObject(AtomicInteger index, Class<T> clazz)
     {
         int pos = this.position;
         try
@@ -1180,6 +1181,23 @@ public class Buffer
         }
         builder.append("]}");
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Buffer buffer = (Buffer) o;
+        return position == buffer.position && lastIndex == buffer.lastIndex && fixed == buffer.fixed && Arrays.equals(data, buffer.data);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = Objects.hash(position, lastIndex, fixed);
+        result = 31 * result + Arrays.hashCode(data);
+        return result;
     }
 
     private static byte getCharsetIndex(Charset charset)
