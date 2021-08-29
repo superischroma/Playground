@@ -6,18 +6,14 @@ import me.superischroma.playground.command.AbstractCommand;
 import me.superischroma.playground.command.CommandController;
 import me.superischroma.playground.event.EventManager;
 import me.superischroma.playground.http.HTTP;
-import me.superischroma.playground.http.RequestMethod;
 import me.superischroma.playground.item.*;
 import me.superischroma.playground.listener.TestListener;
-import me.superischroma.playground.recreation.Array;
-import me.superischroma.playground.recreation.JavaRequire;
-import me.superischroma.playground.recreation.Queue;
+import me.superischroma.playground.recreation.*;
 import me.superischroma.playground.reflect.Reflections;
 import me.superischroma.playground.storage.MappedTextFile;
-import me.superischroma.playground.util.PlaygroundUtils;
 import me.superischroma.playground.util.Promise;
 
-import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 import static me.superischroma.playground.recreation.JavaRequire.require;
@@ -54,19 +50,11 @@ public class Playground
             CommandController.queryLoop();
         }
 
-        Promise<String> promise = new Promise<>(() ->
-        {
-            System.out.println("starting");
-            try { Thread.sleep(5000); } catch (Exception ignored) {}
-            return "yes";
-        });
-
-        promise.then(System.out::println);
-        promise.on("end", as ->
-        {
-            Promise.Status status = (Promise.Status) as[0];
-            System.out.println(status.name());
-        });
+        Buffer buffer = new Buffer();
+        buffer.writeCollection(Arrays.asList(7, 28, 382, 2831, 41873, 873423));
+        System.out.println(buffer);
+        buffer.position(0);
+        System.out.println(Arrays.toString(buffer.readArray(Integer.class)));
     }
 
     private static void printArray(Array<?> array)
