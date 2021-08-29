@@ -27,9 +27,10 @@ public final class HTTP
      * @param url The root URL to make a call to; Do NOT provide a query in this field
      * @param requestMethod The method of the request to be made
      * @param parameters Parameters for this request
+     * @param headers Headers for this request
      * @return A CompletableFuture which, when resolved, will provide the response sent back by the server
      */
-    public static Promise<Response> request(String url, RequestMethod requestMethod, Parameters parameters)
+    public static Promise<Response> request(String url, RequestMethod requestMethod, Parameters parameters, Headers headers)
     {
         return new Promise<>(() ->
         {
@@ -62,6 +63,8 @@ public final class HTTP
             {
                 connection = (HttpURLConnection) uri.toURL().openConnection();
                 connection.setRequestMethod(requestMethod.name());
+                for (Map.Entry<String, Object> header : headers)
+                    connection.setRequestProperty(header.getKey(), header.getValue().toString());
                 if (requestMethod == RequestMethod.GET || requestMethod == RequestMethod.OPTIONS || requestMethod == RequestMethod.TRACE)
                 {
                     InputStream stream;
@@ -85,17 +88,17 @@ public final class HTTP
 
     public static Promise<Response> request(String url, RequestMethod requestMethod)
     {
-        return request(url, requestMethod, new Parameters());
+        return request(url, requestMethod, new Parameters(), new Headers());
     }
 
     public static Promise<Response> request(String url, Parameters parameters)
     {
-        return request(url, RequestMethod.GET, parameters);
+        return request(url, RequestMethod.GET, parameters, new Headers());
     }
 
     public static Promise<Response> request(String url)
     {
-        return request(url, RequestMethod.GET, new Parameters());
+        return request(url, RequestMethod.GET, new Parameters(), new Headers());
     }
 
     /**
@@ -105,24 +108,24 @@ public final class HTTP
      * @param parameters Parameters for this request
      * @return  The response sent back by the server
      */
-    public static Response requestSync(String url, RequestMethod requestMethod, Parameters parameters)
+    public static Response requestSync(String url, RequestMethod requestMethod, Parameters parameters, Headers headers)
     {
-        return request(url, requestMethod, parameters).await();
+        return request(url, requestMethod, parameters, headers).await();
     }
 
     public static Response requestSync(String url, RequestMethod requestMethod)
     {
-        return requestSync(url, requestMethod, new Parameters());
+        return requestSync(url, requestMethod, new Parameters(), new Headers());
     }
 
     public static Response requestSync(String url, Parameters parameters)
     {
-        return requestSync(url, RequestMethod.GET, parameters);
+        return requestSync(url, RequestMethod.GET, parameters, new Headers());
     }
 
     public static Response requestSync(String url)
     {
-        return requestSync(url, RequestMethod.GET, new Parameters());
+        return requestSync(url, RequestMethod.GET, new Parameters(), new Headers());
     }
 
     public static class Response
@@ -256,7 +259,7 @@ public final class HTTP
 
         public String toString()
         {
-            return text();
+            return new String(buffer, contentType.charset != null ? contentType.charset : StandardCharsets.UTF_8);
         }
     }
 
@@ -320,6 +323,74 @@ public final class HTTP
                     joiner.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8));
                 else
                     joiner.add(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
+            }
+            return joiner.toString();
+        }
+
+        @Override
+        public Iterator<Map.Entry<String, Object>> iterator()
+        {
+            return this.map.entrySet().iterator();
+        }
+    }
+
+    public static class Headers implements Iterable<Map.Entry<String, Object>>
+    {
+        private Map<String, Object> map;
+
+        public Headers()
+        {
+            this.map = new HashMap<>();
+        }
+
+        /**
+         * Appends a parameter with a key corresponding to its value
+         * @param key The identifier of the parameter
+         * @param value The underlying value of the parameter
+         * @return This object for chaining of method calls
+         */
+        public Headers append(String key, Object value)
+        {
+            this.map.put(key, value);
+            return this;
+        }
+
+        /**
+         * Appends a parameter with only a key
+         * @param key The identifier of the parameter
+         * @return This object for chaining of method calls
+         */
+        public Headers append(String key)
+        {
+            this.map.put(key, true);
+            return this;
+        }
+
+        public Headers remove(String key)
+        {
+            this.map.remove(key);
+            return this;
+        }
+
+        public Object get(String key)
+        {
+            return this.map.get(key);
+        }
+
+        public int count()
+        {
+            return this.map.size();
+        }
+
+        @Override
+        public String toString()
+        {
+            if (this.map.size() == 0)
+                return "";
+            StringJoiner joiner = new StringJoiner(", ");
+            for (Map.Entry<String, Object> entry : this.map.entrySet())
+            {
+                joiner.add(entry.getKey() + ": " + entry.getValue().toString());
             }
             return joiner.toString();
         }
