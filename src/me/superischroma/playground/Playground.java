@@ -11,8 +11,8 @@ import me.superischroma.playground.listener.TestListener;
 import me.superischroma.playground.recreation.*;
 import me.superischroma.playground.reflect.Reflections;
 import me.superischroma.playground.storage.MappedTextFile;
-import me.superischroma.playground.util.Promise;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class Playground
         buffer.writeCollection(Arrays.asList(7, 28, 382, 2831, 41873, 873423));
         System.out.println(buffer);
         buffer.position(0);
-        System.out.println(Arrays.toString(buffer.readArray(Integer.class)));
+        System.out.println(buffer.readCollection(Integer.class));
     }
 
     private static void printArray(Array<?> array)

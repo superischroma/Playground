@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Reads and writes simple data types from a byte buffer.
+ * Utility to read and write binary data from a byte buffer.
  *
  * There are two settings for Buffer: Fixed and Dynamic
  *
@@ -825,12 +825,12 @@ public class Buffer
 
     private <T> Collection<T> readCollection(AtomicInteger index, Class<T> clazz)
     {
-        return new ArrayList<>(Arrays.asList(readArray(index, clazz)));
+        return new ArrayList<>(Arrays.asList(this.readArray(index, clazz)));
     }
 
     public <T> Collection<T> readCollection(Class<T> clazz)
     {
-        return new ArrayList<>(Arrays.asList(readArray(clazz)));
+        return new ArrayList<>(Arrays.asList(this.readArray(clazz)));
     }
 
     public int calcArrBytes(Object[] arr)
