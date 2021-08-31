@@ -87,21 +87,41 @@ public class Buffer
         this.position = position;
     }
 
+    /**
+     * Creates a new Buffer from provided binary data.
+     * @param data Binary data to initialize the Buffer with
+     * @param fixed Whether the Buffer is fixed or not
+     * @param significant Number of significant bytes in the data provided
+     */
     public Buffer(byte[] data, boolean fixed, int significant)
     {
         this(data, fixed, significant, 0);
     }
 
+    /**
+     * Creates a new Buffer from provided binary data with all bytes being significant.
+     * @param data Binary data to initialize the Buffer with
+     * @param fixed Whether the Buffer is fixed or not
+     */
     public Buffer(byte[] data, boolean fixed)
     {
         this(data, fixed, data.length, 0);
     }
 
+    /**
+     * Creates a new fixed Buffer from provided binary data with all bytes being significant.
+     * @param data Binary data to initialize the Buffer with
+     */
     public Buffer(byte[] data)
     {
         this(data, true, data.length, 0);
     }
 
+    /**
+     * Creates a new Buffer and allocates a provided amount of bytes.
+     * @param alloc Bytes for allocation
+     * @param fixed Whether the Buffer is fixed or not
+     */
     public Buffer(int alloc, boolean fixed)
     {
         this.data = new byte[alloc];
@@ -110,16 +130,29 @@ public class Buffer
         this.position = 0;
     }
 
+    /**
+     * Creates a new dynamic Buffer and allocates a provided amount of bytes.
+     * @param alloc Bytes for allocation
+     */
     public Buffer(int alloc)
     {
         this(alloc, false);
     }
 
+    /**
+     * Creates a new Buffer and allocates 1 KiB (1024 bytes) of data.
+     */
     public Buffer()
     {
         this(1024, false);
     }
 
+    /**
+     * Creates a new Buffer from another Buffer.
+     * Underlying buffer array is not the same as
+     * the one provided (it clones the array).
+     * @param buffer Buffer to copy data from
+     */
     public Buffer(Buffer buffer)
     {
         this.data = buffer.data.clone();
@@ -128,6 +161,13 @@ public class Buffer
         this.position = buffer.position;
     }
 
+    /**
+     * Writes a single byte to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param b Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int write(int index, byte b)
     {
         grow(index, Byte.BYTES);
@@ -136,6 +176,12 @@ public class Buffer
         return Byte.BYTES;
     }
 
+    /**
+     * Writes a single byte to the Buffer at
+     * the current position and moves it forward 1.
+     * @param b Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int write(byte b)
     {
         grow(Byte.BYTES);
@@ -144,11 +190,22 @@ public class Buffer
         return Byte.BYTES;
     }
 
+    /**
+     * Reads a single byte from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public byte read(int index)
     {
         return this.data[index];
     }
 
+    /**
+     * Reads a single byte from the Buffer at
+     * the current position and moves it forward 1.
+     * @return Data that was read
+     */
     public byte read()
     {
         return this.data[position++];
@@ -218,6 +275,13 @@ public class Buffer
         return s;
     }
 
+    /**
+     * Writes a byte array to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param bs Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeBytes(int index, byte[] bs)
     {
         grow(index, bs.length);
@@ -227,6 +291,12 @@ public class Buffer
         return bs.length;
     }
 
+    /**
+     * Writes a byte array to the Buffer at
+     * the current position and moves it forward the length of the array.
+     * @param bs Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeBytes(byte[] bs)
     {
         grow(bs.length);
@@ -236,18 +306,37 @@ public class Buffer
         return bs.length;
     }
 
+    /**
+     * Reads {@code bs.length} bytes from the
+     * Buffer and puts it in the byte array provided
+     * at the specified index.
+     * @param index Where to read the data from
+     * @param bs What to read byte data into
+     */
     public void readBytes(int index, byte[] bs)
     {
         for (int i = 0; i < bs.length; i++)
             bs[i] = this.data[index++];
     }
 
+    /**
+     * Reads {@code bs.length} bytes from the
+     * Buffer and puts it in the byte array provided
+     * and moves the position forward the length of {@code bs}.
+     * @param bs What to read byte data into
+     */
     public void readBytes(byte[] bs)
     {
         for (int i = 0; i < bs.length; i++)
             bs[i] = this.data[position++];
     }
 
+    /**
+     * Reads {@code amount} bytes from the
+     * Buffer at the specified index.
+     * @param index Where to read the data from
+     * @param amount Amount of bytes to read
+     */
     public byte[] readBytes(int index, int amount)
     {
         byte[] bs = new byte[amount];
@@ -256,6 +345,12 @@ public class Buffer
         return bs;
     }
 
+    /**
+     * Reads {@code amount} bytes from the
+     * Buffer and puts it in the byte array provided
+     * and moves the position forward {@code amount}.
+     * @param amount Amount of bytes to read
+     */
     public byte[] readBytes(int amount)
     {
         byte[] bs = new byte[amount];
@@ -264,6 +359,13 @@ public class Buffer
         return bs;
     }
 
+    /**
+     * Writes a single short to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param s Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeShort(int index, short s)
     {
         grow(index, Short.BYTES);
@@ -273,6 +375,12 @@ public class Buffer
         return Short.BYTES;
     }
 
+    /**
+     * Writes a single short to the Buffer at
+     * the current position and moves it forward 2.
+     * @param s Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeShort(short s)
     {
         grow(Short.BYTES);
@@ -282,6 +390,12 @@ public class Buffer
         return Short.BYTES;
     }
 
+    /**
+     * Reads a single short from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public short readShort(int index)
     {
         short s = this.data[index++]; // init as first byte
@@ -291,6 +405,11 @@ public class Buffer
         return s;
     }
 
+    /**
+     * Reads a single short from the Buffer at
+     * the current position and moves it forward 2.
+     * @return Data that was read
+     */
     public short readShort()
     {
         short s = this.data[position++]; // init as first byte
@@ -300,6 +419,13 @@ public class Buffer
         return s;
     }
 
+    /**
+     * Writes a single integer to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param i Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeInt(int index, int i)
     {
         grow(index, Integer.BYTES);
@@ -309,6 +435,12 @@ public class Buffer
         return Integer.BYTES;
     }
 
+    /**
+     * Writes a single integer to the Buffer at
+     * the current position and moves it forward 4.
+     * @param i Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeInt(int i)
     {
         grow(Integer.BYTES);
@@ -318,6 +450,12 @@ public class Buffer
         return Integer.BYTES;
     }
 
+    /**
+     * Reads a single integer from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public int readInt(int index)
     {
         int i = this.data[index++]; // init as first byte
@@ -330,6 +468,11 @@ public class Buffer
         return i;
     }
 
+    /**
+     * Reads a single integer from the Buffer at
+     * the current position and moves it forward 4.
+     * @return Data that was read
+     */
     public int readInt()
     {
         int i = this.data[position++]; // init as first byte
@@ -342,6 +485,13 @@ public class Buffer
         return i;
     }
 
+    /**
+     * Writes a single long (int64) to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param l Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeLong(int index, long l)
     {
         grow(index, Long.BYTES);
@@ -351,6 +501,12 @@ public class Buffer
         return Long.BYTES;
     }
 
+    /**
+     * Writes a single long (int64) to the Buffer at
+     * the current position and moves it forward 8.
+     * @param l Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeLong(long l)
     {
         grow(Long.BYTES);
@@ -360,6 +516,12 @@ public class Buffer
         return Long.BYTES;
     }
 
+    /**
+     * Reads a single long (int64) from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public long readLong(int index)
     {
         long l = this.data[index++]; // init as first byte
@@ -372,6 +534,11 @@ public class Buffer
         return l;
     }
 
+    /**
+     * Reads a single byte from the Buffer at
+     * the current position and moves it forward 8.
+     * @return Data that was read
+     */
     public long readLong()
     {
         long l = this.data[position++]; // init as first byte
@@ -384,6 +551,13 @@ public class Buffer
         return l;
     }
 
+    /**
+     * Writes a single float to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param f Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeFloat(int index, float f)
     {
         grow(index, Float.BYTES);
@@ -394,6 +568,12 @@ public class Buffer
         return Float.BYTES;
     }
 
+    /**
+     * Writes a single float to the Buffer at
+     * the current position and moves it forward 4.
+     * @param f Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeFloat(float f)
     {
         grow(Float.BYTES);
@@ -404,6 +584,12 @@ public class Buffer
         return Float.BYTES;
     }
 
+    /**
+     * Reads a single float from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public float readFloat(int index)
     {
         int i = this.data[index++]; // init as first byte
@@ -416,6 +602,11 @@ public class Buffer
         return Float.intBitsToFloat(i);
     }
 
+    /**
+     * Reads a single byte from the Buffer at
+     * the current position and moves it forward 4.
+     * @return Data that was read
+     */
     public float readFloat()
     {
         int i = this.data[position++]; // init as first byte
@@ -428,6 +619,13 @@ public class Buffer
         return Float.intBitsToFloat(i);
     }
 
+    /**
+     * Writes a single double (float64) to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param d Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeDouble(int index, double d)
     {
         grow(index, Double.BYTES);
@@ -438,6 +636,12 @@ public class Buffer
         return Double.BYTES;
     }
 
+    /**
+     * Writes a single double (float64) to the Buffer at
+     * the current position and moves it forward 8.
+     * @param d Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeDouble(double d)
     {
         grow(Double.BYTES);
@@ -448,6 +652,12 @@ public class Buffer
         return Double.BYTES;
     }
 
+    /**
+     * Reads a single double (float64) from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public double readDouble(int index)
     {
         long l = this.data[index++]; // init as first byte
@@ -460,6 +670,11 @@ public class Buffer
         return Double.longBitsToDouble(l);
     }
 
+    /**
+     * Reads a single byte from the Buffer at
+     * the current position and moves it forward 8.
+     * @return Data that was read
+     */
     public double readDouble()
     {
         long l = this.data[position++]; // init as first byte
@@ -472,6 +687,14 @@ public class Buffer
         return Double.longBitsToDouble(l);
     }
 
+    /**
+     * Writes a String to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param s Data to add
+     * @param charset Charset to use when reading this String back
+     * @return Amount of bytes needed to store this value
+     */
     public int writeString(int index, String s, Charset charset)
     {
         byte[] bytes = s.getBytes(charset);
@@ -486,11 +709,27 @@ public class Buffer
         return 5 + bytes.length;
     }
 
+    /**
+     * Writes a String to the Buffer at
+     * the provided index.
+     * Uses the UTF-8 charset.
+     * @param index Where to write the data
+     * @param s Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeString(int index, String s)
     {
         return writeString(index, s, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Writes a String to the Buffer at
+     * the current position and moves it forward the
+     * length of the String + 4 (for length int) + 1 (charset byte).
+     * @param s Data to add
+     * @param charset Charset to use when reading this String back
+     * @return Amount of bytes needed to store this value
+     */
     public int writeString(String s, Charset charset)
     {
         byte[] bytes = s.getBytes(charset);
@@ -505,11 +744,25 @@ public class Buffer
         return 5 + bytes.length;
     }
 
+    /**
+     * Writes a String to the Buffer at
+     * the current position and moves it forward the
+     * length of the String + 4 (for length int) + 1 (charset byte).
+     * Uses the UTF-8 charset.
+     * @param s Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeString(String s)
     {
         return writeString(s, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Reads a String from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public String readString(int index)
     {
         return this.readString(new AtomicInteger(index));
@@ -524,6 +777,12 @@ public class Buffer
         return new String(bs, charset);
     }
 
+    /**
+     * Reads a String from the Buffer at
+     * the current position and moves it forward the
+     * length of the String + 4 (for length int) + 1 (charset byte).
+     * @return Data that was read
+     */
     public String readString()
     {
         int blen = this.readInt();
@@ -532,6 +791,14 @@ public class Buffer
         return new String(bs, charset);
     }
 
+    /**
+     * Writes an entire array to the Buffer at
+     * the current position and moves it forward the
+     * length of the array + 4 (for length int).
+     * Strings use UTF-8 currently. This might change in a later update.
+     * @param arr Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeArray(Object[] arr)
     {
         grow(calcArrBytes(arr));
@@ -566,6 +833,14 @@ public class Buffer
         return len;
     }
 
+    /**
+     * Writes an entire array to the Buffer at
+     * the provided index.
+     * Strings use UTF-8 currently. This might change in a later update.
+     * @param index Where to write the data
+     * @param arr Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeArray(int index, Object[] arr)
     {
         grow(index, calcArrBytes(arr));
@@ -642,6 +917,13 @@ public class Buffer
         return len;
     }
 
+    /**
+     * Reads an entire array from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @param clazz Type of the array
+     * @return Data that was read
+     */
     public <T> T[] readArray(int index, Class<T> clazz)
     {
         return readArray(new AtomicInteger(index), clazz);
@@ -678,6 +960,13 @@ public class Buffer
         return (T[]) arrobj;
     }
 
+    /**
+     * Reads an entire array from the Buffer at
+     * the current position and moves it forward the
+     * length of the array + 4 (for length int)
+     * @param clazz Type of the array
+     * @return Data that was read
+     */
     public <T> T[] readArray(Class<T> clazz)
     {
         int arrlen = this.readInt();
@@ -709,6 +998,13 @@ public class Buffer
         return (T[]) arrobj;
     }
 
+    /**
+     * Writes an entire Collection to the Buffer at
+     * the current position and moves it forward the
+     * size of the Collection + 4 (for length int)
+     * @param collection Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeCollection(Collection collection)
     {
         grow(calcColBytes(collection));
@@ -743,6 +1039,13 @@ public class Buffer
         return len;
     }
 
+    /**
+     * Writes an entire Collection to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param collection Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeCollection(int index, Collection collection)
     {
         grow(index, calcColBytes(collection));
@@ -819,6 +1122,13 @@ public class Buffer
         return len;
     }
 
+    /**
+     * Reads an entire Collection from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @param clazz Type of the Collection
+     * @return Data that was read
+     */
     public <T> Collection<T> readCollection(int index, Class<T> clazz)
     {
         return readCollection(new AtomicInteger(index), clazz);
@@ -829,6 +1139,13 @@ public class Buffer
         return new ArrayList<>(Arrays.asList(this.readArray(index, clazz)));
     }
 
+    /**
+     * Reads an entire Collection from the Buffer at
+     * the current position and moves it forward the
+     * length of the Collection + 4 (for length int)
+     * @param clazz Type of the Collection
+     * @return Data that was read
+     */
     public <T> Collection<T> readCollection(Class<T> clazz)
     {
         return new ArrayList<>(Arrays.asList(this.readArray(clazz)));
@@ -888,17 +1205,37 @@ public class Buffer
         return bs;
     }
 
+    /**
+     * Writes an Object to the Buffer at
+     * the provided index.
+     * @param index Where to write the data
+     * @param obj Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeObject(int index, BufferSerializable obj)
     {
         Buffer buffer = obj.buffer();
         return this.writeBytes(index, buffer.array());
     }
 
+    /**
+     * Writes an Object to the Buffer at
+     * the current position and moves it forward the
+     * length of the Object in binary.
+     * @param obj Data to add
+     * @return Amount of bytes needed to store this value
+     */
     public int writeObject(BufferSerializable obj)
     {
         return this.writeBytes(obj.buffer().array());
     }
 
+    /**
+     * Reads an Object from the Buffer at
+     * the provided index.
+     * @param index Where to read the data from
+     * @return Data that was read
+     */
     public <T> T readObject(int index, Class<T> clazz)
     {
         return readObject(new AtomicInteger(index), clazz);
@@ -929,6 +1266,12 @@ public class Buffer
         }
     }
 
+    /**
+     * Reads an Object from the Buffer at
+     * the current position and moves it forward the
+     * length of the Object in binary.
+     * @return Data that was read
+     */
     public <T> T readObject(Class<T> clazz)
     {
         try
@@ -948,23 +1291,47 @@ public class Buffer
         }
     }
 
+    /**
+     * Sets the position of this Buffer.
+     * The position allows for procedural
+     * reading of a Buffer and will move
+     * automatically when data is read.
+     * @param position New position
+     * @return This Buffer
+     */
     public Buffer position(int position)
     {
         this.position = position;
         return this;
     }
 
+    /**
+     * Gets the position of this Buffer.
+     * The position allows for procedural
+     * reading of a Buffer and will move
+     * automatically when data is read.
+     * @return This Buffer's position
+     */
     public int position()
     {
         return position;
     }
 
+    /**
+     * Sets if this Buffer is fixed or dynamic.
+     * @param fixed Fixed or dynamic
+     * @return This Buffer
+     */
     public Buffer fixed(boolean fixed)
     {
         this.fixed = fixed;
         return this;
     }
 
+    /**
+     * Gets if this Buffer is fixed or dynamic.
+     * @return This Buffer's state
+     */
     public boolean fixed()
     {
         return fixed;
@@ -988,6 +1355,10 @@ public class Buffer
         return this;
     }
 
+    /**
+     * Gets the byte length of this Buffer.
+     * @return This Buffer's byte length
+     */
     public int length()
     {
         return this.data.length;
@@ -1161,6 +1532,9 @@ public class Buffer
         return readFile(new File(fileName));
     }
 
+    /**
+     * @see Object#toString()
+     */
     public String toString()
     {
         StringBuilder builder = new StringBuilder()
@@ -1183,6 +1557,9 @@ public class Buffer
         return builder.toString();
     }
 
+    /**
+     * @see Object#equals(Object)
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -1192,6 +1569,9 @@ public class Buffer
         return position == buffer.position && lastIndex == buffer.lastIndex && fixed == buffer.fixed && Arrays.equals(data, buffer.data);
     }
 
+    /**
+     * @see Object#hashCode()
+     */
     @Override
     public int hashCode()
     {

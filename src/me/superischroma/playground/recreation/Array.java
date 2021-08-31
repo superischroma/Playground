@@ -1,12 +1,17 @@
 package me.superischroma.playground.recreation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Arrays;
+import java.util.ListIterator;
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
  * A dynamic array in the style of JavaScript.
- * Capable of performing a the majority of operations performed by Collection framework objects.
+ * Capable of performing the majority of operations performed by Collection framework objects.
  * Provides more methods to interact with the array directly.
  *
  * This dynamic array implementation uses a concept called capacity.
@@ -397,10 +402,10 @@ public class Array<T> implements ArrayLike<T>
      */
     public String join(String separator)
     {
-        StringJoiner joiner = new StringJoiner(separator);
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size; i++)
-            joiner.add(elements[i] != null ? elements[i].toString() : null);
-        return joiner.toString();
+            builder.append(i != 0 ? separator : "").append(elements[i] != null ? elements[i].toString() : null);
+        return builder.toString();
     }
 
     /**
@@ -603,10 +608,11 @@ public class Array<T> implements ArrayLike<T>
 
     private String toSpecificString(int less)
     {
-        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        StringBuilder builder = new StringBuilder("[");
         for (int i = 0; i < less; i++)
-            joiner.add(elements[i] != null ? elements[i].toString() : null);
-        return joiner.toString();
+            builder.append(i != 0 ? ", " : "").append(elements[i] != null ? elements[i].toString() : null);
+        builder.append("]");
+        return builder.toString();
     }
 
     private void checkBounds(int index)

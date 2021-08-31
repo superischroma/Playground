@@ -12,7 +12,6 @@ import me.superischroma.playground.recreation.*;
 import me.superischroma.playground.reflect.Reflections;
 import me.superischroma.playground.storage.MappedTextFile;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
