@@ -140,7 +140,7 @@ public class Buffer
     }
 
     /**
-     * Creates a new Buffer and allocates 1 KiB (1024 bytes) of data.
+     * Creates a new dynamic Buffer and allocates 1 KiB (1024 bytes) of data.
      */
     public Buffer()
     {
