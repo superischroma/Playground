@@ -17,33 +17,33 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Utility to read and write binary data from a byte buffer.
+ * Utility to read and write binary data from a byte buffer.<br>
  *
- * There are two settings for Buffer: Fixed and Dynamic
+ * There are two settings for Buffer: Fixed and Dynamic<br>
  *
  * Fixed Buffers will not resize themselves if data being
  * modified is out of range. The only way to resize a
- * Fixed Buffer is by using the {@link #length(int)} method.
+ * Fixed Buffer is by using the {@link #length(int)} method.<br>
  *
  * Dynamic Buffers will automatically resize themselves if
  * data being modified cannot fit in the current underlying
  * buffer. The size of the Dynamic Buffer can still be
- * manually modified by using the {@link #length(int)} method.
+ * manually modified by using the {@link #length(int)} method.<br>
  *
  * {@link String}s are encoded in a specific way to guarantee
  * the correct {@link Charset} will be used when
- * decoding it.
- * String encoding goes as follows: {@code <length (int)> <charset (byte)> <string (byte[])>}
+ * decoding it.<br>
+ * String encoding goes as follows: {@code <length (int)> <charset (byte)> <string (byte[])>}<br>
  *
  * Objects can be serialized into binary data by extending
  * the {@link BufferSerializable} interface. Use methods
  * {@link #writeObject(BufferSerializable)} and
- * {@link #readObject(Class)} to convert data.
+ * {@link #readObject(Class)} to convert data.<br>
  *
  * Arrays and {@link java.util.Collection}s support Object serialization and
  * are encoded as such: {@code <length (int)> <elements (byte[])>}
  * Currently, Arrays and Collections only support the UTF-8
- * charset for Strings. This may be changed in the future.
+ * charset for Strings. This may be changed in the future.<br>
  *
  * The effective length of a Buffer is dependent on the state
  * of the Buffer. If it is fixed, then the effective length
@@ -51,15 +51,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  * significant bytes in the Buffer. The significant bytes
  * of the Buffer are all bytes that come before the
  * highest indexed byte that was modified, and the
- * highest indexed byte.
+ * highest indexed byte.<br>
  *
  * For example, if you have a fixed Buffer that contains the
- * data [00 00 00 05 00 00], then the effective length
- * of that Buffer will be 4.
+ * data {@code [00 00 00 05 00 00]}, then the effective length
+ * of that Buffer will be 4.<br>
  *
  * But also, if you have another fixed Buffer that contains the
- * data [00 00 00 FF 00 00], and if [FF 00] was inserted as a
- * short, then the effective length will be 5.
+ * data {@code [00 00 00 FF 00 00]}, and if {@code [FF 00]} was inserted as a
+ * short, then the effective length will be 5.<br>
  *
  * If you're wrapping binary data you already have, you can use
  * one of the constructors with a {@code significant} parameter

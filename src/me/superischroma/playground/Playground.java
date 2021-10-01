@@ -12,7 +12,6 @@ import me.superischroma.playground.recreation.*;
 import me.superischroma.playground.reflect.Reflections;
 import me.superischroma.playground.storage.MappedTextFile;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static me.superischroma.playground.recreation.JavaRequire.require;
@@ -49,11 +48,22 @@ public class Playground
             CommandController.queryLoop();
         }
 
-        Buffer buffer = new Buffer();
-        buffer.writeCollection(Arrays.asList(7, 28, 382, 2831, 41873, 873423));
-        System.out.println(buffer);
-        buffer.position(0);
-        System.out.println(buffer.readCollection(Integer.class));
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        tree.push(5, 2, 8, 1, 4, 7, 10, 6);
+        System.out.println(tree);
+        System.out.println(tree.size() + ", " + tree.depth());
+        tree.remove(8);
+        System.out.println(tree);
+        System.out.println(tree.size() + ", " + tree.depth());
+        tree.remove(5);
+        System.out.println(tree);
+        System.out.println(tree.size() + ", " + tree.depth());
+        tree.remove(10);
+        System.out.println(tree);
+        System.out.println(tree.size() + ", " + tree.depth());
+        tree.remove(2);
+        System.out.println(tree);
+        System.out.println(tree.size() + ", " + tree.depth());
     }
 
     private static void printArray(Array<?> array)
