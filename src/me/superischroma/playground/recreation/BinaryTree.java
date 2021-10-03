@@ -1,7 +1,9 @@
 package me.superischroma.playground.recreation;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 
 /**
  * A simple implementation of a binary tree.
@@ -9,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * of a method, then the complexity is O(1).
  * @param <T> Data stored in the binary tree
  */
-public class BinaryTree<T extends Comparable<T>>
+public class BinaryTree<T extends Comparable<T>> implements Cloneable, Iterable<T>
 {
     private Node<T> root;
     private int size;
@@ -127,7 +129,7 @@ public class BinaryTree<T extends Comparable<T>>
         int successes = 0;
         for (T node : nodes)
         {
-            if (remove(node))
+            if (remove(node) != null)
                 successes++;
         }
         return successes;
@@ -140,10 +142,10 @@ public class BinaryTree<T extends Comparable<T>>
      * @param node Node to remove from binary tree
      * @return Whether this node was found and removed or not
      */
-    public boolean remove(T node)
+    public T remove(T node)
     {
         if (root == null)
-            return false;
+            return null;
         AtomicBoolean state = new AtomicBoolean();
         Node<T> parent = parentNode(node, root, state);
         Node<T> value = parent != null ? (state.get() ? parent.right : parent.left) : root;
@@ -170,7 +172,7 @@ public class BinaryTree<T extends Comparable<T>>
             AtomicBoolean farState = new AtomicBoolean();
             Node<T> farParent = parentFarthestRight(value.left, farState);
             if (farParent == null)
-                return false;
+                return null;
             Node<T> farNode = farState.get() ? farParent.right : farParent.left;
             if (farState.get())
                 farParent.right = null;
@@ -179,7 +181,7 @@ public class BinaryTree<T extends Comparable<T>>
             value.value = farNode.value;
         }
         size--;
-        return true;
+        return value.value;
     }
 
     /**
@@ -187,11 +189,15 @@ public class BinaryTree<T extends Comparable<T>>
      * Complexity: O(log n)<br>
      *  - log n: traversing<br>
      * @param value What to look for
-     * @return Whether it is in the tree or not
+     * @return The value contained in the tree (Comparable elements could be implemented in a key-value way)
      */
-    public boolean search(T value)
+    public T search(T value)
     {
-        return parentNode(value, root, new AtomicBoolean()) != null;
+        if (root != null && compare(value, root.value) == 0)
+            return root.value;
+        AtomicBoolean state = new AtomicBoolean();
+        Node<T> parent = parentNode(value, root, state);
+        return parent != null ? (state.get() ? parent.right : parent.left).value : null;
     }
 
     private Node<T> parentNode(T value, Node<T> root, AtomicBoolean state)
@@ -260,6 +266,59 @@ public class BinaryTree<T extends Comparable<T>>
         return size;
     }
 
+    private int sizeRecursively(Node<T> root)
+    {
+        if (root == null)
+            return 0;
+        int c = 1;
+        if (root.left != null)
+            c += sizeRecursively(root.left);
+        if (root.right != null)
+            c += sizeRecursively(root.right);
+        return c;
+    }
+
+    /**
+     * Creates a subtree of this binary tree.
+     * @param node Root of the subtree
+     * @return A subtree of the current binary tree
+     */
+    public BinaryTree<T> subTree(T node)
+    {
+        AtomicBoolean state = new AtomicBoolean();
+        Node<T> found = parentNode(node, root, state);
+        if (found == null)
+            return null;
+        Node<T> child = state.get() ? found.right : found.left;
+        return new BinaryTree<>(child, sizeRecursively(child));
+    }
+
+    /**
+     * Inverts this binary tree
+     * @return This binary tree
+     */
+    public BinaryTree<T> invert()
+    {
+        invertRecursively(root);
+        return this;
+    }
+
+    private void invertRecursively(Node<T> root)
+    {
+        if (root == null)
+            return;
+        Node<T> left = root.left;
+        root.left = root.right;
+        root.right = left;
+        invertRecursively(root.left);
+        invertRecursively(root.right);
+    }
+
+    public BinaryTree<T> clone()
+    {
+        return new BinaryTree<>(root.clone(), size);
+    }
+
     public String toString()
     {
         StringBuilder builder = new StringBuilder().append("[");
@@ -291,7 +350,27 @@ public class BinaryTree<T extends Comparable<T>>
         return o1.compareTo(o2);
     }
 
-    private static class Node<T extends Comparable<T>>
+    @Override
+    public Iterator<T> iterator()
+    {
+        throw new UnsupportedOperationException("No direct iteration allowed for a binary tree yet; use BinaryTree#forEach(Consumer)");
+    }
+
+    public void forEach(Consumer<? super T> action)
+    {
+        forEachRecursively(root, action);
+    }
+
+    private void forEachRecursively(Node<T> root, Consumer<? super T> action)
+    {
+        if (root == null)
+            return;
+        action.accept(root.value);
+        forEachRecursively(root.left, action);
+        forEachRecursively(root.right, action);
+    }
+
+    private static class Node<T extends Comparable<T>> implements Cloneable
     {
         private T value;
         private Node<T> left;
@@ -310,13 +389,9 @@ public class BinaryTree<T extends Comparable<T>>
             return this.value != null ? this.value.toString() : null;
         }
 
-        public boolean valueEquals(T other)
+        public Node<T> clone()
         {
-            if (value == null && other == null)
-                return true;
-            if (value == null)
-                return false;
-            return value.equals(other);
+            return new Node<>(value, left != null ? left.clone() : null, right != null ? right.clone() : null);
         }
 
         public boolean isLeaf()

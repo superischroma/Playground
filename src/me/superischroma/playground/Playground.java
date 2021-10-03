@@ -48,22 +48,9 @@ public class Playground
             CommandController.queryLoop();
         }
 
-        BinaryTree<Integer> tree = new BinaryTree<>();
-        tree.push(5, 2, 8, 1, 4, 7, 10, 6);
-        System.out.println(tree);
-        System.out.println(tree.size() + ", " + tree.depth());
-        tree.remove(8);
-        System.out.println(tree);
-        System.out.println(tree.size() + ", " + tree.depth());
-        tree.remove(5);
-        System.out.println(tree);
-        System.out.println(tree.size() + ", " + tree.depth());
-        tree.remove(10);
-        System.out.println(tree);
-        System.out.println(tree.size() + ", " + tree.depth());
-        tree.remove(2);
-        System.out.println(tree);
-        System.out.println(tree.size() + ", " + tree.depth());
+        PriorityQueue<Integer> queue = new PriorityQueue<>(PriorityQueue.GREATEST);
+        queue.push(6, 18, 2, 19, 12, 102, 1029);
+        System.out.println(queue);
     }
 
     private static void printArray(Array<?> array)
