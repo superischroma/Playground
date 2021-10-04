@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43bccac5-f148-4fd8-96ab-5b53272dd974" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/math/AlgebraEquation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/math/MathOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/math/MathOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/recreation/HashMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/recreation/LinkedArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/recreation/PriorityQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/me/superischroma/playground/recreation/Stack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/superischroma/playground/Playground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/superischroma/playground/Playground.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/me/superischroma/playground/recreation/BinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/superischroma/playground/recreation/BinaryTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/me/superischroma/playground/math/AlgebraEquation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/superischroma/playground/math/AlgebraExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/me/superischroma/playground/math/MathOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/me/superischroma/playground/math/MathOperation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
